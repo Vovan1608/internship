@@ -87,7 +87,8 @@ describe ('sortingTriangles', _ => {
     return Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
   }
 
-  const randomInteger = (min, max) => min + Math.random() * (max + 1 - min);
+  const randomFloat = (min, max) => min + Math.random() * (max + 1 - min);
+  const randomInteger = (min, max) => Math.round(randomFloat(min, max));
 
   const makeAnArrOfObj = (size, rangeOfSide) => {
     let arr = [];
@@ -97,10 +98,14 @@ describe ('sortingTriangles', _ => {
 
     for (let i = 0; i < size; i += 1) {
       let obj = {
-        vertices: `${String.fromCharCode(randomInteger(A_IN_ASCII, Z_IN_ASCII))}`.repeat(NUM_OF_VERTICES),
-        a: randomInteger(0, rangeOfSide),
-        b: randomInteger(0, rangeOfSide),
-        c: randomInteger(0, rangeOfSide)
+        vertices: `
+          ${String.fromCharCode(randomInteger(A_IN_ASCII, Z_IN_ASCII))}
+          ${String.fromCharCode(randomInteger(A_IN_ASCII, Z_IN_ASCII))}
+          ${String.fromCharCode(randomInteger(A_IN_ASCII, Z_IN_ASCII))}
+        `,
+        a: randomFloat(0, rangeOfSide),
+        b: randomFloat(0, rangeOfSide),
+        c: randomFloat(0, rangeOfSide)
       }
 
       arr.push(obj);
