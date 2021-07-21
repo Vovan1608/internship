@@ -247,4 +247,5 @@ describe ('getFibonacci', () => {
     assert.notDeepEqual(getFibonacci({min: 0, max: 120}), [1,2,3,4,5], 'wrong result');
   });
 });
+
 mocha.run();
