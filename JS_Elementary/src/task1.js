@@ -14,7 +14,7 @@ const renderChessDesk = (height, width, symbol) => {
 	}
 
 	if (isInRange(height, 0, 20) || isInRange(width, 0, 20)) {
-		return 'parameters may be greater then 0 and less then 20';
+		return 'parameters should be greater then 0 and less or equal then 20';
 	}
 
 	if (!isString(symbol)) {
