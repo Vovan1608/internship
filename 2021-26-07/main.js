@@ -93,17 +93,15 @@ const isLuckyTicket = () => {
 	}
 
 	const MAX_LENGTH_OF_TICKET_NUM = 6;
+	const HALF_LENGTH_OF_TICKET_NUM = 3;
+
 	let arrOfDigits = [...String(num).padStart(MAX_LENGTH_OF_TICKET_NUM, '0')];
 
-	const resObj =  arrOfDigits.reduce((acc, next, i) => {
-		if (i < MAX_LENGTH_OF_TICKET_NUM / 2) {
-			acc.first += Number(next);
-			return acc;
-		} else {
-			acc.second += Number(next);
-			return acc;
-		}
+	const {first, second} =  arrOfDigits.reduce((acc, next, i) => {
+		acc[i < HALF_LENGTH_OF_TICKET_NUM ? 'first' : 'second'] += Number(next);
+
+		return acc;
 	}, {first: 0, second: 0});
 
-	return resObj.first === resObj.second ? 'YES' : 'NO';
+	return first === second ? 'YES' : 'NO';
 }
