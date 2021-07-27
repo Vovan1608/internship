@@ -3,7 +3,7 @@
 // ===== HELPERS =====
 const checkIsMoreAndLess = (num, min, max) => num > min && num <= max;
 
-const checkIsNaturalNumberLessOrEqualAThousand = (num, min, max) => {
+const checkNumIsNaturalBiggerMinLessOrEqualMax = (num, min, max) => {
 	return 	typeof num === 'number' &&
 					!Number.isNaN(num) &&
 					checkIsMoreAndLess(num, min, max) &&
@@ -15,7 +15,7 @@ const getDataFromUser = (message, min, max) => {
 
 	do {
 		parameter = Number(prompt(`${message}. It should be greater then ${min} and less then ${max + 1}`, '1'));
-	} while (!checkIsNaturalNumberLessOrEqualAThousand(parameter, min, max));
+	} while (!checkNumIsNaturalBiggerMinLessOrEqualMax(parameter, min, max));
 
 	return parameter;
 }
