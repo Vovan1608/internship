@@ -4,15 +4,15 @@ const checkTicTacToe = arr => {
 
 	try {
 		if (Array.isArray(arr) && arr.length === NUM_OF_ELEM) {
-			if (!arr.flat().every(el => Boolean(el))) {
-				return 0;
-			}
+			const [a, b, c] = arr;
 
-			if (arr.flat().some(el => !Boolean(el))) {
+			if (arr.flat().some(el => el === 0)) {
 				return -1;
 			}
+
+			
 		} else {
-			throw new Error('arr should be array ahd has length 3');
+			throw new Error('arr should be array and has length 3');
 		}
 	} catch(e) {
 		console.error(e.message);
@@ -20,5 +20,5 @@ const checkTicTacToe = arr => {
 
 }
 
-const res = checkTicTacToe([[0,1,0], [0,0,2], [0,0,0]]);
+const res = checkTicTacToe([[1,2,2], [1,1,1], [2,1,2]]);
 console.log(res);
