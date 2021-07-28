@@ -2,13 +2,11 @@ import { isString } from './helpers.js';
 
 const getShortestWord = str => {
 	if (isString(str)) {
-		const THE_LONGEST_WORD_IN_THE_WORLD = 33;
+		let newStr = str.replace(/\W/g, ' ').match(/\w+/g);
 
-		return str.split(' ').reduce((acc, el) => {
-			acc = acc < el.length ? acc : el.length;
-
-			return acc;
-		}, THE_LONGEST_WORD_IN_THE_WORLD);
+		return newStr.reduce((cur, el) => {
+			return cur.length < el.length ? cur : el;
+		}).length;
 	} else {
 		return 'str is not string';
 	}
