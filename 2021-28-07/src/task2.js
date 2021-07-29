@@ -3,8 +3,8 @@ const rotateMatrix = matrix => {
 }
 
 const getDiagonal = (matrix, direct) => {
-	const LAST_IND_INT_ARR = 2;
-	return matrix.map((el, i) => direct ? el[LAST_IND_INT_ARR - i] : el[i]);
+	const LAST_IND_IN_ARR = 2;
+	return matrix.map((el, i) => direct ? el[LAST_IND_IN_ARR - i] : el[i]);
 }
 
 const getOptions = matrix => {
