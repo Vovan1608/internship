@@ -31,6 +31,8 @@ const findChair = (matrix, weNeedChairs) => {
 					} else {
 						takenChairs.push(0);
 					}
+				} else {
+					break;
 				}
 			}
 
