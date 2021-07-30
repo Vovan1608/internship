@@ -1,24 +1,20 @@
 import { isIPv4 } from './helpers.js';
 
 const convertIPV4ToDecimal = ipv4 => {
-	if (isIPv4(ipv4)) {
-		return parseInt(
-			ipv4
-				.split(".")
-				.map(ipSec => Number(ipSec).toString(2))
-				.map(ipSec => `00000000${ipSec}`.slice(-8))
-				.reduce((acc, cur) => acc + cur, ''),
-			2
-		);
+	const RADIX = 2;
+	const BITS = 8;
+	const res = ipv4
+		.split('.')
+		.map(oktet => Number(oktet).toString(RADIX).padStart(BITS, '0'))
+		.reduce((acc, cur) => acc + cur, '');
+
+	return parseInt(res, RADIX);
+}
+
+const countIpAdresses = (ipStart, ipEnd) => {
+	if (isIPv4(ipStart) && isIPv4(ipEnd)) {
+		return convertIPV4ToDecimal(ipEnd) - convertIPV4ToDecimal(ipStart);
 	} else {
 		return 'wrong IPv4';
 	}
 }
-
-const countIpAdresses = (ipStart, ipEnd) => {
-	return convertIPV4ToDecimal(ipEnd) - convertIPV4ToDecimal(ipStart);
-}
-
-const ip1 = '10.0.0.0';
-const ip2 = '10.0.0.50';
-console.log(countIpAdresses(ip1, ip2));
