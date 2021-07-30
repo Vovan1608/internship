@@ -29,10 +29,10 @@ const getDays = (year, month, day) => {
 	return fullYearDays + fullMonthDays + day + extraDays;
 }
 
-function chronos(str) {
+function chronos(year, month, day) {
 	const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const DAYS_IN_WEEK = 7;
-	const [year, month, day] = str.match(/\d+/g).map(el => Number(el));
+	// const [year, month, day] = str.match(/\d+/g).map(el => Number(el));
 
 	return DAYS_OF_WEEK[getDays(year, month, day - 1) % DAYS_IN_WEEK];
 }
