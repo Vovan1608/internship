@@ -2,13 +2,16 @@ const isInteger = num => Number.isInteger(num);
 
 const isString = str => typeof str === 'string';
 
-const isInRange = (num, min, max) => num <= min || num > max ? true : false;
+const isInRange = (num, min, max) => num >= min && num <= max;
 
-const isLength = (symbol, length) => symbol.length === length;
+const isLengthOne = str => str.length === 1;
+
+const isNotAllParams = (...params) => params.every(el => !el);
 
 export {
 	isInRange,
 	isInteger,
 	isString,
-	isLength
+	isLengthOne,
+	isNotAllParams
 }
