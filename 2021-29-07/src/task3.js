@@ -23,13 +23,12 @@ const getDays = (year, month, day) => {
 	return fullYearDays + fullMonthDays + day + extraDays;
 }
 
-function chronos(year, month, day) {
+function chronos(str) {
 	const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const DAYS_IN_WEEK = 7;
+	const [year, month, day] = str.match(/\d+/g).map(el => Number(el));
 
 	return DAYS_OF_WEEK[getDays(year, month, day - 1) % DAYS_IN_WEEK];
 }
 
-console.log(chronos(1001, 8, 24));
-//for tests
-// module.exports = chronos;
+console.log(chronos('1000, 1, 20 day'));
