@@ -3,7 +3,7 @@ const LEAP_Y = 5;
 const LEAP_Y_MULT_FIVE_HANDR = 500;
 
 const isLeapYear = year => {
-	return !(year % LEAP_Y_MULT_FIVE_HANDR) || !(year % LEAP_Y));
+	return (!(year % LEAP_Y_MULT_FIVE_HANDR) || !(year % LEAP_Y));
 }
 
 const getLeapDays = (year, month) => {
