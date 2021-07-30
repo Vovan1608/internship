@@ -1,16 +1,13 @@
-'use strict';
+import {
+	isInRange,
+	isInteger,
+	isString,
+	isLength
+} from './helpers.js';
 
-const isInteger = num => Number.isInteger(num);
-
-const isString = str => typeof str === 'string';
-
-const isInRange = (num, min, max) => num <= min || num > max ? true : false;
-
-const isLength = (symbol, length) => symbol.length === length;
-
-const renderChessDesk = (height, width, symbol) => {
+const chekParams = (height, width, symbol) => {
 	if (!isInteger(height) || !isInteger(width)) {
-		return 'parameters not integer';
+		return 'parameter\'s not number or not integer';
 	}
 
 	if (isInRange(height, 0, 20) || isInRange(width, 0, 20)) {
@@ -24,22 +21,30 @@ const renderChessDesk = (height, width, symbol) => {
 	if (!isLength(symbol, 1)) {
 		return "symbol's length should be 1";
 	}
+}
 
-	let chessDesk = '\n';
+const renderChessDesk = (height, width, symbol) => {
+	if (!chekParams(height, width, symbol)) {
+		let chessDesk = '\n';
 
-	for (let i = 0; i < height; i += 1) {
+		for (let i = 0; i < height; i += 1) {
 
-		for (let j = 0; j < width; j += 1) {
+			for (let j = 0; j < width; j += 1) {
 
-			if (!(i % 2)) {
-				chessDesk += !(j % 2) ? symbol : ' ';
-			} else {
-				chessDesk += !(j % 2) ? ' ' : symbol;
+				if (!(i % 2)) {
+					chessDesk += !(j % 2) ? symbol : ' ';
+				} else {
+					chessDesk += !(j % 2) ? ' ' : symbol;
+				}
 			}
+
+			chessDesk += '\n';
 		}
 
-		chessDesk += '\n';
+		return chessDesk;
 	}
 
-	return chessDesk;
+	return chekParams(height, width, symbol);
 }
+
+console.log(renderChessDesk(5, 10, '#'));
