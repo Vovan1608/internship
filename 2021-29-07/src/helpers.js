@@ -57,9 +57,24 @@ const isStringAsMorzeCode = code => {
 
 const doInt = (dividend, divider) => ~~(dividend / divider);
 
+const isNaturalIntNum = num => {
+  return !isNaN(num) && Number.isInteger(num) && num > 0 && Number.isFinite(num);
+}
+
+const isMonth = month => {
+  return isNaturalIntNum(month) && month > 0 && month <= 12;
+}
+
+const isDay = day => {
+  return isNaturalIntNum(day) && day > 0 && day <= 31;
+}
+
 export {
 	isIPv4,
 	MORSE_CODE,
 	isStringAsMorzeCode,
-	doInt
+	doInt,
+  isNaturalIntNum,
+  isMonth,
+  isDay
 }

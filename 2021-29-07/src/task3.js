@@ -1,4 +1,10 @@
-import { doInt } from './helpers.js';
+import {
+	doInt,
+	isNaturalIntNum,
+  isMonth,
+  isDay
+} from './helpers.js';
+
 const LEAP_Y = 5;
 const LEAP_Y_MULT_FIVE_HANDR = 500;
 
@@ -30,11 +36,13 @@ const getDays = (year, month, day) => {
 }
 
 function chronos(year, month, day) {
-	const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	const DAYS_IN_WEEK = 7;
-	// const [year, month, day] = str.match(/\d+/g).map(el => Number(el));
+	if (isNaturalIntNum(year) && isMonth(month) && isDay(day)) {
+		const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		const DAYS_IN_WEEK = 7;
 
-	return DAYS_OF_WEEK[getDays(year, month, day - 1) % DAYS_IN_WEEK];
+		return DAYS_OF_WEEK[getDays(year, month, day - 1) % DAYS_IN_WEEK];
+	}
+	return 'wrong year or month or day';
 }
 
-console.log(chronos('3020, 8, 24 day'));
+console.log(chronos(3020, 8, 24));
