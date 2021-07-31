@@ -36,7 +36,7 @@ const renderChessDesk = (height, width, symbol) => {
 	if (!check) {
 		return (
 			Array.from( Array(height), (_, i) => {
-				return Array.from( Array(width), (_, j) => (i + j) % 2 ? symbol : ' ').join('')
+				return Array.from( Array(width), (_, j) => (i + j) % 2 ? ' ' : symbol).join('')
 			}).join('\n')
 		);
 	}
