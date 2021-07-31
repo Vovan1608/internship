@@ -37,4 +37,4 @@ const getPartitial = num => {
 	return 'wrong num';
 }
 
-console.log(getPartitial(8));
+// console.log(getPartitial(8));
