@@ -28,34 +28,22 @@ const chekParams = (...params) => {
 			return `${key} should be string length 1`;
 		}
 	}
-
-	return true;
 }
 
 const renderChessDesk = (height, width, symbol) => {
-	if (chekParams(height, width, symbol)) {
-		let chessDesk = '\n';
-		
-		// for (let i = 0; i < height; i += 1) {
+	const check = chekParams(height, width, symbol);
 
-		// 	for (let j = 0; j < width; j += 1) {
-
-		// 		if (!(i % 2)) {
-		// 			chessDesk += !(j % 2) ? symbol : ' ';
-		// 		} else {
-		// 			chessDesk += !(j % 2) ? ' ' : symbol;
-		// 		}
-		// 	}
-
-		// 	chessDesk += '\n';
-		// }
-
-		return chessDesk;
+	if (!check) {
+		return (
+			Array.from( Array(height), (_, i) => {
+				return Array.from( Array(width), (_, j) => (i + j) % 2 ? symbol : ' ').join('')
+			}).join('\n')
+		);
 	}
 
-	return {status: 'failed', reason: chekParams(height, width, symbol)}
+	return {status: 'failed', reason: check}
 }
 
-// console.log(renderChessDesk(5, 10, '#'));
+console.log(renderChessDesk(8, 18, '#'));
 // console.log(renderChessDesk());
-console.log(renderChessDesk(5, 10, '#'));
+// console.log(renderChessDesk(5, 10));
