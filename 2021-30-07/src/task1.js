@@ -48,4 +48,4 @@ const calculate = quipuStr => {
 	return 'wrong quipu string';
 }
 
-console.log(calculate('@~@@+@@~~'));
+// console.log(calculate('@~@@+@@~~'));

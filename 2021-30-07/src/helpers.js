@@ -3,6 +3,9 @@ const isQuipuStr = str => {
 	return typeof str === 'string' && strNotContainWordsAndDigits.test(str);
 }
 
+const isNaturalMoreOne = num => Number.isInteger(num) && num > 1;
+
 export {
-	isQuipuStr
+	isQuipuStr,
+	isNaturalMoreOne
 }
