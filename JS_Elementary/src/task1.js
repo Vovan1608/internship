@@ -44,6 +44,6 @@ const renderChessDesk = (height, width, symbol) => {
 	return {status: 'failed', reason: check}
 }
 
-console.log(renderChessDesk(8, 18, '#'));
+// console.log(renderChessDesk(8, 18, '#'));
 // console.log(renderChessDesk());
 // console.log(renderChessDesk(5, 10));

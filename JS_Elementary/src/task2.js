@@ -1,37 +1,52 @@
-'use strict';
+import {
+	isObject,
+	isNumber,
+	IsStrictInRange
+} from './helpers.js';
 
-const isObject = val => val instanceof Object && !Array.isArray(val);
+const isPropANumMoreZeroLessMillion = (obj, min, max) => {
+	return Object.values(obj).every(el => isNumber(el) && IsStrictInRange(el, min, max));
+}
 
-const isNumber = val => typeof val === 'number';
+const checkParams = (...params) => {
+	const [envelop1, envelop2] = params;
+	const min = 0;
+	const max = 1e6;
 
-const isValidProp = (obj, ...props) => props.every(prop => prop in obj && isNumber(obj[prop]));
+	for (const [key, val] of Object.entries({ envelop1, envelop2 })) {
 
+		if (!val) {
+			return `there isn\'t ${key} parameter`;
+		}
 
-const checkEnvelops = (envelop1, envelop2) => {
-	if (!envelop1 || !envelop2) {
-		return 'it should be two parameters';
-	}
+		if (!isObject(val)) {
+			return `${key} should be object`;
+		}
 
-	if (!isObject(envelop1) || !isObject(envelop2)) {
-		return 'parameters should be object';
-	}
-
-	if (!isValidProp(envelop1, 'a', 'b') || !isValidProp(envelop2, 'c', 'd')) {
-		return 'envelop1 must have properties a, b and envelop2 must have c, d, properties must be number';
-	}
-
-	if (![...Object.values(envelop1), ...Object.values(envelop2)].every(el => el > 0 && el < 1000000)) {
-		return 'sizes must be more than 0 and less than 1000000';
-	}
-
-	const {a, b} = envelop1;
-	const {c, d} = envelop2;
-
-	if (a < c && b < d || a < d && b < c) {
-		return 1;
-	} else if (a > c && b > d || a > d && b > c) {
-		return 2;
-	} else {
-		return 0;
+		if (!isPropANumMoreZeroLessMillion(val, min, max)) {
+			return `properties of ${key} should be a number in range from ${min} to ${max}`;
+		}
 	}
 }
+
+const checkEnvelops = (...params) => {
+	const check = checkParams(...params);
+
+	if (!check) {
+		const [{a, b}, {c, d}] = params;
+
+		if (a < c && b < d || a < d && b < c) {
+			return 1;
+		}
+
+		if (a > c && b > d || a > d && b > c) {
+			return 2;
+		}
+
+		return 0;
+	}
+
+	return {status: 'failed', reason: check}
+}
+
+// console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 5}));
