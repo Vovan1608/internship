@@ -8,7 +8,7 @@ const getArea = obj => {
 	const [a, b, c] = Object.values(obj).filter(el => typeof el === 'number');
 	const halfP = (a + b + c) / 2;
 
-	return Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
+	return ~~Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
 }
 
 const isValidParamsInObj = obj => {
@@ -27,11 +27,18 @@ const isValidParamsInObj = obj => {
 	);
 }
 
-const isEveryElIsObjWithNormParam = arr => arr.every(el => isObject(el) && isValidParamsInObj(el));
-
 const isTriangel = (...nums) => {
 	const [a, b, c] = nums;
-	return c <= a + b && a <= b + c && b <= a + c;
+	return (
+		nums.every(el => isNumber(el) &&el > 0) &&
+		c <= a + b &&
+		a <= b + c &&
+		b <= a + c
+	);
+}
+
+const isEveryElIsObjWithNormParam = arr => {
+	return arr.every(el => isObject(el) && isValidParamsInObj(el));
 }
 
 const checkParams = arr => {
