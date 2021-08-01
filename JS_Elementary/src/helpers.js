@@ -15,6 +15,8 @@ const isObject = val => val instanceof Object && !Array.isArray(val);
 const isNumber = val => typeof val === 'number';
 
 const isPropInObj = (obj, ...props) => props.every(prop => prop in obj);
+
+const isArr = arr => Array.isArray(arr);
 export {
 	isInRange,
 	IsStrictInRange,
@@ -24,5 +26,6 @@ export {
 	isNotAllParams,
 	isObject,
 	isNumber,
-	isPropInObj
+	isPropInObj,
+	isArr
 }
