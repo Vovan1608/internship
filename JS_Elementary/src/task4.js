@@ -20,33 +20,37 @@ const checkParam = param => {
 	}
 }
 
+const getArrOfPalindromes = num => {
+	const numStr = String(num);
+	const temp = Array.from(numStr);
+	const palindromArr = [];
+
+	temp.forEach((_, i) => temp.forEach((_, j) => {
+		const palindrome = numStr.slice(i, j + i + 1);
+		const palindromeReverse = [...palindrome].reverse().join('');
+
+		if (palindrome === palindromeReverse && palindrome.length > 1) {
+			palindromArr.push(palindrome);
+		}
+	}));
+
+	return palindromArr;
+}
+
 const getPalindrome = num => {
 	const check = checkParam(num);
 
 	if (!check) {
-		const numStr = String(num);
-		const palindromArr = [];
-		const strAsArr = [...numStr];
+		const palArr = getArrOfPalindromes(num);
 
-		strAsArr.forEach((_, i) => strAsArr.forEach((_, j) => {
-			const palindrome = numStr.slice(i, j + i + 1);
-			const palindromeReverse = palindrome.split('').reverse().join('');
+		const res = palArr.reduce((cur, next) => {
+			return cur.length - next.length >= 0 ? cur : next;
+		});
 
-			if (palindrome === palindromeReverse && palindrome.length > 1) {
-				palindromArr.push(palindrome);
-			}
-		}));
-
-		let res;
-
-		if (palindromArr.length) {
-			res = palindromArr.reduce((cur, next) => cur.length - next.length >= 0 ? cur : next);
-		}
-
-		return res || 0;
+		return palArr.length && res || 0;
 	}
 
 	return {status: 'failed', reason: check}
 }
 
-// console.log(getPalindrome(12344327));
+console.log(getPalindrome(12344327));

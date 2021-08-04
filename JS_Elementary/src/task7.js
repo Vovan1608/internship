@@ -15,11 +15,11 @@ const checkParams = param => {
 
 	if (Object.keys(param).length === 1) {
 		if (!isPropInObj(param, 'length')) {
-			return isPropInObj(param, 'length') || 'context should be has property length';
+			return isPropInObj(param, 'length') || 'context must have property length';
 		}
 	} else {
 		if (!isPropInObj(param, 'min', 'max')) {
-			return 'context should be has properties min and max';
+			return 'context must have properties min and max';
 		}
 
 		if (param.min >= param.max) {
@@ -74,5 +74,5 @@ const getFibonachiFromRange = context => {
 	return {status: 'failed', reason: check}
 }
 
-console.log(getFibonachiFromRange({length: 10}));
-console.log(getFibonachiFromRange({min: 2, max: 11}));
+// console.log(getFibonachiFromRange({length: 10}));
+// console.log(getFibonachiFromRange({min: 2, max: 11}));
