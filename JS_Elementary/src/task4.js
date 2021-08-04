@@ -26,8 +26,9 @@ const getPalindrome = num => {
 	if (!check) {
 		const numStr = String(num);
 		const palindromArr = [];
+		const strAsArr = [...numStr];
 
-		[...numStr].forEach((_, i) => [...numStr].forEach((_, j) => {
+		strAsArr.forEach((_, i) => strAsArr.forEach((_, j) => {
 			const palindrome = numStr.slice(i, j + i + 1);
 			const palindromeReverse = palindrome.split('').reverse().join('');
 
