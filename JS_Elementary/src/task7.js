@@ -67,9 +67,8 @@ const getFibonachiFromRange = context => {
 
 		let count = min;
 		const arr = Array.from({length}, _ => count += 1);
-		return arr.map(el => {
-			return caching(el);
-		}).join(',');
+
+		return arr.map(el => caching(el)).join(',');
 	}
 
 	return {status: 'failed', reason: check}
