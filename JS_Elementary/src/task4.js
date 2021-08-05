@@ -53,4 +53,4 @@ const getPalindrome = num => {
 	return {status: 'failed', reason: check}
 }
 
-console.log(getPalindrome(12344327));
+export {getPalindrome}

@@ -5,8 +5,7 @@ import {
 	isLengthOne
 } from './helpers.js';
 
-const chekParams = (...params) => {
-	const [height, width, symbol] = params;
+const chekParams = (height, width, symbol) => {
 	const min = 1;
 	const max = 20;
 
@@ -21,11 +20,15 @@ const chekParams = (...params) => {
 		}
 
 		if (key !== 'symbol' && !isInRange(val, min, max)) {
-			return `${key} should be greater then ${min} and less or equal then ${max}`;
+			return `${key} should be greater then ${min} and less or equal ${max}`;
 		}
 
-		if (key === 'symbol' && !isString(key) && !isLengthOne(key)) {
-			return `${key} should be string length 1`;
+		if (key === 'symbol' && !isString(val)) {
+			return `${key} should be string`;
+		}
+
+		if (key === 'symbol' && !isLengthOne(val)) {
+			return `${key} should be length 1`;
 		}
 	}
 }
@@ -44,6 +47,4 @@ const renderChessDesk = (height, width, symbol) => {
 	return {status: 'failed', reason: check}
 }
 
-// console.log(renderChessDesk(8, 18, '#'));
-// console.log(renderChessDesk());
-// console.log(renderChessDesk(5, 10));
+export {renderChessDesk}

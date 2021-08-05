@@ -74,5 +74,5 @@ const getFibonachiFromRange = context => {
 	return {status: 'failed', reason: check}
 }
 
-// console.log(getFibonachiFromRange({length: 10}));
-// console.log(getFibonachiFromRange({min: 2, max: 11}));
+
+export {getFibonachiFromRange}

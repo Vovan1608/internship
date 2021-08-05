@@ -1,6 +1,8 @@
 import {isInteger} from './helpers.js';
 
 const checkParams = (...params) => {
+	const [length, minSqrVal] = params;
+
 	if (!params.length) {
 		return 'not params at all';
 	}
@@ -10,8 +12,8 @@ const checkParams = (...params) => {
 			return `parameters shoud be an iteger number`;
 		}
 
-		if (el < 0) {
-			return `parameters should be pozitive number`;
+		if (el <= 0) {
+			return `parameters should be greater 0`;
 		}
 	}
 }
@@ -20,17 +22,12 @@ const getNumericalSiquence = (length, minSqrVal) => {
 	const check = checkParams(length, minSqrVal);
 
 	if (!check) {
-		let count = 0;
+		let count = Math.ceil(Math.sqrt(minSqrVal));
 
-		return (
-			Array
-				.from({length}, _ => count++)
-				.filter(el => el * el >= minSqrVal)
-				.join(',')
-		);
+		return Array.from({length}, _ => count++).join(',');
 	}
 
 	return {status: 'failed', reason: check}
 }
 
-// console.log(getNumericalSiquence(20, 90));
+export {getNumericalSiquence}

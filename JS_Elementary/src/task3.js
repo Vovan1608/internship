@@ -70,4 +70,4 @@ const triangels = [
 	{vertices: 'JKL', j: 18, k: 22.3, l: 25.1},
 ]
 
-// console.log(sortiTriangles(triangels));
+export {sortiTriangles}

@@ -89,11 +89,11 @@ const getWinnerMethod = obj => {
 
 		return {
 			winner : res,
-			tickets : { simple: simple, hard: hard }
+			tickets : { simple, hard }
 		}
 	}
 
 	return {status: 'failed', reason: check}
 }
 
-// console.log(getWinnerMethod({min: 266500, max: 266000}));
+export {getWinnerMethod}

@@ -49,4 +49,4 @@ const checkEnvelops = (...params) => {
 	return {status: 'failed', reason: check}
 }
 
-// console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 5}));
+export {checkEnvelops}
