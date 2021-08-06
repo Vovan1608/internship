@@ -14,7 +14,7 @@ import { getFibonachiFromRange } from './src/task7.js';
 // 	{vertices: 'QWE', q: 25, w: 20.7, e: 10},
 // 	{vertices: 'RTY', r: 4, t: 6.8, y: 5},
 // 	{vertices: 'POK', p: 14, o: 28, k: 21.4},
-// 	{vertices: 'JKL', j: 18, k: 22.3, l: 25.1},
+// 	{vertices: 'JKL', j: 18, k: 22.3, l: 25.1}
 // ]));
 // console.log(getPalindrome(12344327));
 // console.log(getWinnerMethod({min: 266600, max: 266000}));

@@ -11,34 +11,35 @@ const getArea = obj => {
 	return ~~Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
 }
 
-const isValidParamsInObj = obj => {
+const isValidLengthOfObj = obj => {
 	const NUM_PROPS = 4;
+	return Object.keys(obj).length === NUM_PROPS;
+}
+
+const isValidPropVerticesLength = str => {
 	const LENGTH_VERT = 3;
+	return str.length === LENGTH_VERT;
+}
+
+const isPropVertMatchesNames = obj => {
 	const { vertices } = obj;
 	const keys = Object.keys(obj);
 	const keysOfVer = keys.filter(el => el !== 'vertices');
-	const valsOfVer = Object.values(obj).filter(el => isNumber(el));
 
-	return (
-		keys.length === NUM_PROPS &&
-		vertices.length === LENGTH_VERT &&
-		vertices === keysOfVer.join('').toUpperCase() &&
-		isTriangel(...valsOfVer)
-	);
+	return vertices === keysOfVer.join('').toUpperCase();
 }
 
 const isTriangel = (...nums) => {
 	const [a, b, c] = nums;
 	return (
-		nums.every(el => isNumber(el) &&el > 0) &&
-		c <= a + b &&
-		a <= b + c &&
-		b <= a + c
+		nums.every(el => isNumber(el) && el > 0) &&
+		c <= a + b && a <= b + c && b <= a + c
 	);
 }
 
-const isEveryElIsObjWithNormParam = arr => {
-	return arr.every(el => isObject(el) && isValidParamsInObj(el));
+const isValidValOfVertProps = obj => {
+	const valsOfVer = Object.values(obj).filter(el => isNumber(el));
+	return isTriangel(...valsOfVer);
 }
 
 const checkParams = arr => {
@@ -46,8 +47,28 @@ const checkParams = arr => {
 		return 'arr is not defined or is not an array';
 	}
 
-	if (!isEveryElIsObjWithNormParam(arr)) {
-		return `wrong array of objects`;
+	for (let el of arr) {
+		if (!isObject(el)) {
+			return `${el} is not object`;
+		}
+
+		if (!isValidLengthOfObj(el)) {
+			return `wrong number of properties of element ${el.vertices}`;
+		}
+
+		for (let [key, val] of Object.entries(el)) {
+			if (key === 'vertices' && !isValidPropVerticesLength(val)) {
+				return `${val} of property ${key} of element ${el.vertices} is wrong`;
+			}
+
+			if (key === 'vertices' && !isPropVertMatchesNames(el)) {
+				return `names of properties of vertices propety don\'t match ${val}`;
+			}
+		}
+
+		if (!isValidValOfVertProps(el)) {
+			return `can\'t be triangle with that parameters in ${el.vertices}`;
+		}
 	}
 }
 
