@@ -60,15 +60,13 @@ const getFibonachiFromRange = context => {
 		let {min, max, length} = context;
 
 		if (!length) {
-			length = max - min;
+			length = max - min + 1;
+			min -= 1;
 		} else {
-			min = 0;
+			min = -1;
 		}
 
-		let count = min;
-		const arr = Array.from({length}, _ => count += 1);
-
-		return arr.map(el => caching(el)).join(',');
+		return Array.from({length}, _ => caching(++min)).join(',');
 	}
 
 	return {status: 'failed', reason: check}

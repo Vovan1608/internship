@@ -10,24 +10,15 @@ const makeArrOfDigits = num => {
 	return [...String(num).padStart(MAX_LENGTH_OF_TICKET_NUM, '0')];
 }
 
-const getSimpleLuckyTicket = num => {
+const computedTicket = num => {
 	const HALF_LENGTH_OF_TICKET_NUM = 3;
 
-	const {first, second} =  makeArrOfDigits(num).reduce((acc, next, i) => {
+	return makeArrOfDigits(num).reduce((acc, next, i) => {
 		acc[i < HALF_LENGTH_OF_TICKET_NUM ? 'first' : 'second'] += Number(next);
-		return acc;
-	}, {first: 0, second: 0});
-
-	return first === second;
-}
-
-const getHardLuckyTicket = num => {
-	const {even, odd} =  makeArrOfDigits(num).reduce((acc, next, i) => {
 		acc[i % 2 ? 'odd' : 'even'] += Number(next);
-		return acc;
-	}, {even: 0, odd: 0});
 
-	return even === odd;
+		return acc;
+	}, {first: 0, second: 0, even: 0, odd: 0});
 }
 
 const isValidParamsInObj = (obj, min, max) => {
@@ -66,19 +57,22 @@ const getWinnerMethod = obj => {
 
 		let simple = 0;
 		let hard = 0;
+		let count = min - 1;
 
-		for (let i = min; i <= max; i += 1) {
+		Array.from({length: max - min + 1}, _ => count += 1).forEach(el => {
+			const {first, second, even, odd} = computedTicket(el);
 
-			if (getSimpleLuckyTicket(i)) {
+			if (first === second) {
 				simple += 1;
 			}
 
-			if (getHardLuckyTicket(i)) {
+			if (even === odd) {
 				hard += 1;
 			}
-		}
+		});
 
 		let res;
+
 		if (simple > hard) {
 			res = 'simple';
 		} else if (simple < hard) {

@@ -1,8 +1,6 @@
 import {isInteger} from './helpers.js';
 
 const checkParams = (...params) => {
-	const [length, minSqrVal] = params;
-
 	if (!params.length) {
 		return 'not params at all';
 	}
@@ -24,7 +22,7 @@ const getNumericalSiquence = (length, minSqrVal) => {
 	if (!check) {
 		let count = Math.ceil(Math.sqrt(minSqrVal));
 
-		return Array.from({length}, _ => count++).join(',');
+		return Array.from({length}, _ => count += 1).join(',');
 	}
 
 	return {status: 'failed', reason: check}

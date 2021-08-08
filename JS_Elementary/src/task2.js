@@ -8,12 +8,11 @@ const isPropANumMoreZeroLessMillion = (obj, min, max) => {
 	return Object.values(obj).every(el => isNumber(el) && IsStrictInRange(el, min, max));
 }
 
-const checkParams = (...params) => {
-	const [envelop1, envelop2] = params;
+const checkParams = (obj1, obj2) => {
 	const min = 0;
 	const max = 1e6;
 
-	for (const [key, val] of Object.entries({ envelop1, envelop2 })) {
+	for (const [key, val] of Object.entries({ obj1, obj2 })) {
 
 		if (!val) {
 			return `there isn\'t ${key} parameter`;
@@ -29,11 +28,12 @@ const checkParams = (...params) => {
 	}
 }
 
-const checkEnvelops = (...params) => {
-	const check = checkParams(...params);
+const checkEnvelops = (obj1, obj2) => {
+	const check = checkParams(obj1, obj2);
 
 	if (!check) {
-		const [{a, b}, {c, d}] = params;
+		const {a, b} = obj1;
+		const {c, d} = obj2;
 
 		if (a < c && b < d || a < d && b < c) {
 			return 1;
