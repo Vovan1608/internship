@@ -20,5 +20,5 @@ import { getFibonachiFromRange } from './src/task7.js';
 // console.log(getPalindrome(12344327));
 // console.log(getWinnerMethod({min: 200200, max: 222222}));
 // console.log(getNumericalSiquence(7, 111));
-// console.log(getFibonachiFromRange({length: 50}));
-// console.log(getFibonachiFromRange({min: 20, max: 45}));
+// console.log(getFibonachiFromRange({length: 26}));
+// console.log(getFibonachiFromRange({min: 20, max: 25}));

@@ -33,34 +33,9 @@ const checkParams = param => {
 }
 
 const getFibonachi = num => {
-	let a = 1;
-  let b = 1;
-
-	for (let i = 3; i <= num; i++) {
-    let c = a + b;
-    a = b;
-    b = c;
-  }
-
-  return b;
+	const a = (1 + 5 ** 0.5) / 2;
+  return Math.round(a ** num / 5 ** 0.5);
 }
-
-const cacheDecorator = cb => {
-	let cache = new Map();
-
-	return function func (val) {
-		if (cache.has(val)) {
-			return cache.get(val);
-		}
-
-		let res = cb(val);
-		cache.set(val, res);
-
-		return res;
-	}
-}
-
-const caching = cacheDecorator(getFibonachi);
 
 const getFibonachiFromRange = context => {
 	const check = checkParams(context);
@@ -75,7 +50,7 @@ const getFibonachiFromRange = context => {
 			min = -1;
 		}
 
-		return Array.from({length}, _ => caching(++min)).join(',');
+		return Array.from({length}, _ => getFibonachi(++min)).join(',');
 	}
 
 	return {status: 'failed', reason: check}
