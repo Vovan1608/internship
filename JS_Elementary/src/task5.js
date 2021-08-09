@@ -59,7 +59,9 @@ const getWinnerMethod = obj => {
 		let hard = 0;
 		let count = min - 1;
 
-		Array.from({length: max - min + 1}, _ => count += 1).forEach(el => {
+		Array.from({length: max - min + 1}, el => {
+			el = ++count;
+
 			const {first, second, even, odd} = computedTicket(el);
 
 			if (first === second) {

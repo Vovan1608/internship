@@ -32,8 +32,7 @@ const checkEnvelops = (obj1, obj2) => {
 	const check = checkParams(obj1, obj2);
 
 	if (!check) {
-		const {a, b} = obj1;
-		const {c, d} = obj2;
+		const [a, b, c, d] = Object.values({...obj1, ...obj2});
 
 		if (a < c && b < d || a < d && b < c) {
 			return 1;

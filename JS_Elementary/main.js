@@ -18,7 +18,7 @@ import { getFibonachiFromRange } from './src/task7.js';
 // ]
 // console.log(sortiTriangles(triangels));
 // console.log(getPalindrome(12344327));
-// console.log(getWinnerMethod({min: 1010, max: 1012}));
+// console.log(getWinnerMethod({min: 200200, max: 222222}));
 // console.log(getNumericalSiquence(7, 111));
-// console.log(getFibonachiFromRange({length: 5}));
-// console.log(getFibonachiFromRange({min: 2, max: 5}));
+// console.log(getFibonachiFromRange({length: 50}));
+// console.log(getFibonachiFromRange({min: 20, max: 45}));
