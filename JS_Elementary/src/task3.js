@@ -70,13 +70,18 @@ const checkParams = arr => {
 			return `can\'t be triangle with that parameters in ${el.vertices}`;
 		}
 	}
+
+	return 'check';
 }
 
 const sortiTriangles = arr => {
 	const check = checkParams(arr);
 
-	if (!check)  {
-		return arr.sort((a, b) => getArea(b) - getArea(a));
+	if (check === 'check')  {
+		const sortedStore = arr.sort((cur, nxt) => getArea(nxt) - getArea(cur));
+		const names = sortedStore.map(el => el.vertices);
+
+		return names;
 	}
 
 	return {status: 'failed', reason: check}

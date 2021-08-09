@@ -5,7 +5,8 @@ import {
 	isLengthOne
 } from './helpers.js';
 
-const chekParams = (height, width, symbol) => {
+const chekParams = (...params) => {
+	const [height, width, symbol] = params;
 	const min = 1;
 	const max = 20;
 
@@ -31,18 +32,32 @@ const chekParams = (height, width, symbol) => {
 			return `${key} should be length 1`;
 		}
 	}
+
+	return 'check';
 }
 
-const renderChessDesk = (height, width, symbol) => {
-	const check = chekParams(height, width, symbol);
-	const space = ' ';
+const renderChessDesk = (height, width, char) => {
+	const check = chekParams(height, width, char);
 
-	if (!check) {
-		return (
-			Array.from( Array(height), (_, i) => {
-				return Array.from( Array(width), (_, j) => (i + j) % 2 ? space : symbol).join('');
-			}).join('\n')
-		);
+	if (check === 'check') {
+		const space = ' ';
+		const lineBreak = '\n';
+		let resultStr = '';
+
+		for (let i = 0; i < height; i += 1) {
+
+			for (let j = 0; j < width; j += 1) {
+				resultStr += (i + j) % 2 ? space : char;
+			}
+
+			resultStr += lineBreak;
+		}
+
+		// const resultStr = Array.from({length: height},
+		// 	(_, i) => Array.from({length: width},
+		// 		(_, j) => (i + j) % 2 ? space : symbol).join('')).join('\n');
+
+		return resultStr;
 	}
 
 	return {status: 'failed', reason: check}

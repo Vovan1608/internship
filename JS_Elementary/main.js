@@ -6,7 +6,7 @@ import { getWinnerMethod } from './src/task5.js';
 import { getNumericalSiquence } from './src/task6.js';
 import { getFibonachiFromRange } from './src/task7.js';
 
-// console.log(renderChessDesk(5, 10, '#'));
+// console.log(renderChessDesk(5, 11, '#'));
 // console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 3}));
 // const triangels = [
 // 	{vertices: 'ABC', a: 10, b: 20, c: 22.5},

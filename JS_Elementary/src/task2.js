@@ -26,19 +26,23 @@ const checkParams = (obj1, obj2) => {
 			return `properties of ${key} should be a number in range from ${min} to ${max}`;
 		}
 	}
+
+	return 'check';
 }
 
 const checkEnvelops = (obj1, obj2) => {
 	const check = checkParams(obj1, obj2);
 
-	if (!check) {
-		const [a, b, c, d] = Object.values({...obj1, ...obj2});
+	if (check === 'check') {
+		const [frstHorsnt, frstVert, scndHorsnt, scndVert] = Object.values({...obj1, ...obj2});
 
-		if (a < c && b < d || a < d && b < c) {
+		if (frstHorsnt < scndHorsnt && frstVert < scndVert ||
+				frstHorsnt < scndVert && frstVert < scndHorsnt) {
 			return 1;
 		}
 
-		if (a > c && b > d || a > d && b > c) {
+		if (frstHorsnt > scndHorsnt && frstVert > scndVert ||
+				frstHorsnt > scndVert && frstVert > scndHorsnt) {
 			return 2;
 		}
 

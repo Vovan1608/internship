@@ -18,36 +18,49 @@ const checkParam = param => {
 	if (!isInRange(param, min, max)) {
 		return `number shoul be more or equal ${min} and less or equal ${max}`;
 	}
+
+	return 'check';
+}
+
+const reverse = str => {
+	let tempStr = '';
+
+  for (let i = str.length - 1; i >= 0; tempStr += str[i--]) { }
+
+	return tempStr;
 }
 
 const getArrOfPalindromes = num => {
-	const numStr = String(num);
-	const temp = Array.from(numStr);
-	const palindromArr = [];
+	const numAsStr = String(num);
+	const limit = numAsStr.length;
+	const palindromStore = [];
 
-	temp.forEach((_, i) => temp.forEach((_, j) => {
-		const palindrome = numStr.slice(i, j + i + 1);
-		const palindromeReverse = [...palindrome].reverse().join('');
+	for (let i = 0; i < limit; i += 1) {
 
-		if (palindrome === palindromeReverse && palindrome.length > 1) {
-			palindromArr.push(palindrome);
+		for (let j = 0; j < limit; j += 1) {
+			const tempStr = numAsStr.slice(i, i + j + 1);
+			const tempStrRev = reverse(tempStr);
+
+			if (tempStr === tempStrRev && tempStr.length > 1) {
+				palindromStore.push(tempStr);
+			}
 		}
-	}));
+	}
 
-	return palindromArr;
+	return palindromStore;
 }
 
 const getPalindrome = num => {
 	const check = checkParam(num);
 
-	if (!check) {
-		const palArr = getArrOfPalindromes(num);
+	if (check === 'check') {
+		const palStore = getArrOfPalindromes(num);
 
-		const res = palArr.reduce((cur, next) => {
+		const res = palStore.reduce((cur, next) => {
 			return cur.length - next.length >= 0 ? cur : next;
 		});
 
-		return palArr.length && res || 0;
+		return palStore.length && res || 0;
 	}
 
 	return {status: 'failed', reason: check}
