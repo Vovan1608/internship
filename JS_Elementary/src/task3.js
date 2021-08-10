@@ -7,8 +7,9 @@ import {
 const getArea = obj => {
 	const [a, b, c] = Object.values(obj).filter(el => typeof el === 'number');
 	const halfP = (a + b + c) / 2;
+	const area = Math.floor(Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c)));
 
-	return ~~Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
+	return area;
 }
 
 const isValidLengthOfObj = obj => {
@@ -29,17 +30,17 @@ const isPropVertMatchesNames = obj => {
 	return vertices === keysOfVer.join('').toUpperCase();
 }
 
-const isTriangel = (...nums) => {
-	const [a, b, c] = nums;
+const isTriangel = (...triangelsSides) => {
+	const [a, b, c] = triangelsSides;
 	return (
-		nums.every(el => isNumber(el) && el > 0) &&
+		triangelsSides.every(el => isNumber(el) && el > 0) &&
 		c <= a + b && a <= b + c && b <= a + c
 	);
 }
 
 const isValidValOfVertProps = obj => {
-	const valsOfVer = Object.values(obj).filter(el => isNumber(el));
-	return isTriangel(...valsOfVer);
+	const triangelsSides = Object.values(obj).filter(el => isNumber(el));
+	return isTriangel(...triangelsSides);
 }
 
 const checkParams = arr => {
