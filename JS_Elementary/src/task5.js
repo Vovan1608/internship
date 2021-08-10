@@ -7,18 +7,22 @@ import {
 
 const makeArrOfDigits = num => {
 	const MAX_LENGTH_OF_TICKET_NUM = 6;
-	return [...String(num).padStart(MAX_LENGTH_OF_TICKET_NUM, '0')];
+	const digitsStore = [...String(num).padStart(MAX_LENGTH_OF_TICKET_NUM, '0')];
+	return digitsStore;
 }
 
 const computedTicket = num => {
 	const HALF_LENGTH_OF_TICKET_NUM = 3;
+	const digitsStore = makeArrOfDigits(num);
 
-	return makeArrOfDigits(num).reduce((acc, next, i) => {
+	const resultStore =  digitsStore.reduce((acc, next, i) => {
 		acc[i < HALF_LENGTH_OF_TICKET_NUM ? 'first' : 'second'] += Number(next);
 		acc[i % 2 ? 'odd' : 'even'] += Number(next);
 
 		return acc;
 	}, {first: 0, second: 0, even: 0, odd: 0});
+
+	return resultStore;
 }
 
 const isValidParamsInObj = (obj, min, max) => {

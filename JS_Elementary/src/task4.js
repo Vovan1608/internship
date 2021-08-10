@@ -23,11 +23,11 @@ const checkParam = param => {
 }
 
 const reverse = str => {
-	let tempStr = '';
+	let resStr = '';
 
-  for (let i = str.length - 1; i >= 0; tempStr += str[i--]) { }
+  for (let i = str.length - 1; i >= 0; resStr += str[i--]) { }
 
-	return tempStr;
+	return resStr;
 }
 
 const getArrOfPalindromes = num => {
@@ -56,11 +56,11 @@ const getPalindrome = num => {
 	if (check === 'check') {
 		const palStore = getArrOfPalindromes(num);
 
-		const res = palStore.reduce((cur, next) => {
+		const result = palStore.reduce((cur, next) => {
 			return cur.length - next.length >= 0 ? cur : next;
 		});
 
-		return palStore.length && res || 0;
+		return palStore.length && result || 0;
 	}
 
 	return {status: 'failed', reason: check}
