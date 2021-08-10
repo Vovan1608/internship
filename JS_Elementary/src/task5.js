@@ -43,12 +43,14 @@ const checkParam = par => {
 	if (!isValidParamsInObj(par, 1, 999999)) {
 		return 'object has wrong parameters';
 	}
+
+	return 'checked';
 }
 
 const getWinnerMethod = obj => {
 	const check = checkParam(obj);
 
-	if (!check) {
+	if (check === 'checked') {
 		let {min, max} = obj;
 
 		if ( min > max) {
@@ -57,12 +59,9 @@ const getWinnerMethod = obj => {
 
 		let simple = 0;
 		let hard = 0;
-		let count = min - 1;
 
-		Array.from({length: max - min + 1}, el => {
-			el = ++count;
-
-			const {first, second, even, odd} = computedTicket(el);
+		for (let i = min; i <= max; i += 1) {
+			const {first, second, even, odd} = computedTicket(i);
 
 			if (first === second) {
 				simple += 1;
@@ -71,20 +70,20 @@ const getWinnerMethod = obj => {
 			if (even === odd) {
 				hard += 1;
 			}
-		});
+		}
 
-		let res;
+		let winner;
 
 		if (simple > hard) {
-			res = 'simple';
+			winner = 'simple';
 		} else if (simple < hard) {
-			res = 'hard';
+			winner = 'hard';
 		} else {
-			res = 'both';
+			winner = 'both';
 		}
 
 		return {
-			winner : res,
+			winner,
 			tickets : { simple, hard }
 		}
 	}

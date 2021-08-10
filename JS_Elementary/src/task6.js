@@ -14,15 +14,18 @@ const checkParams = (...params) => {
 			return `parameters should be greater 0`;
 		}
 	}
+
+	return 'checked';
 }
 
 const getNumericalSiquence = (length, minSqrVal) => {
 	const check = checkParams(length, minSqrVal);
 
-	if (!check) {
+	if (check === 'checked') {
 		let count = Math.ceil(Math.sqrt(minSqrVal));
+		const resultStr = Array.from({length}, _ => count += 1).toString();
 
-		return Array.from({length}, _ => count += 1).join(',');
+		return resultStr;
 	}
 
 	return {status: 'failed', reason: check}
