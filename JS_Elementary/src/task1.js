@@ -53,10 +53,6 @@ const renderChessDesk = (height, width, char) => {
 			resultStr += lineBreak;
 		}
 
-		// const resultStr = Array.from({length: height},
-		// 	(_, i) => Array.from({length: width},
-		// 		(_, j) => (i + j) % 2 ? space : symbol).join('')).join('\n');
-
 		return resultStr;
 	}
 
