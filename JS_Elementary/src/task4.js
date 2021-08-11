@@ -22,45 +22,44 @@ const checkParam = param => {
 	return 'check';
 }
 
-const reverse = str => {
-	let resStr = '';
-
-  for (let i = str.length - 1; i >= 0; resStr += str[i--]) { }
-
-	return resStr;
-}
-
-const getArrOfPalindromes = num => {
-	const numAsStr = String(num);
-	const limit = numAsStr.length;
-	const palindromStore = [];
-
-	for (let i = 0; i < limit; i += 1) {
-
-		for (let j = 0; j < limit; j += 1) {
-			const tempStr = numAsStr.slice(i, i + j + 1);
-			const tempStrRev = reverse(tempStr);
-
-			if (tempStr === tempStrRev && tempStr.length > 1) {
-				palindromStore.push(tempStr);
-			}
-		}
+const expandFromCenter = (str, leftSide, rightSide) => {
+	while(leftSide >= 0 && rightSide < str.length && str[leftSide] === str[rightSide]) {
+		leftSide -= 1;
+		rightSide += 1;
 	}
 
-	return palindromStore;
+	return rightSide - leftSide - 1;
 }
 
 const getPalindrome = num => {
 	const check = checkParam(num);
 
 	if (check === 'check') {
-		const palStore = getArrOfPalindromes(num);
+		const numAsStr = String(num);
+		const limit = numAsStr.length;
+		let palindrom = '';
+		let tempStr = '';
 
-		const result = palStore.reduce((cur, next) => {
-			return cur.length - next.length >= 0 ? cur : next;
-		});
+		let start = 0;
+		let end = 0;
 
-		return palStore.length && result || 0;
+		for (let i = 0; i < limit; i += 1) {
+			const len1 = expandFromCenter(numAsStr, i, i);
+			const len2 = expandFromCenter(numAsStr, i, i + 1);
+			const len = Math.max(len1, len2);
+
+			if (len > end - start && len > 1) {
+				start = Math.ceil(i - (len - 1) / 2);
+				end = Math.floor(i + len / 2);
+				tempStr = numAsStr.substring(start, end + 1);
+			}
+
+			if (palindrom.length < tempStr.length) {
+				palindrom = tempStr;
+			}
+		}
+
+		return palindrom;
 	}
 
 	return {status: 'failed', reason: check}

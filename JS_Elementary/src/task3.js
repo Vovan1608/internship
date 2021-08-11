@@ -4,14 +4,6 @@ import {
 	isObject
 } from './helpers.js';
 
-const getArea = obj => {
-	const [a, b, c] = Object.values(obj).filter(el => typeof el === 'number');
-	const halfP = (a + b + c) / 2;
-	const area = Math.floor(Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c)));
-
-	return area;
-}
-
 const isValidLengthOfObj = obj => {
 	const NUM_PROPS = 4;
 	return Object.keys(obj).length === NUM_PROPS;
@@ -22,7 +14,7 @@ const isValidPropVerticesLength = str => {
 	return str.length === LENGTH_VERT;
 }
 
-const isPropVertMatchesNames = obj => {
+const isPropVertMatchesNamesOfSides = obj => {
 	const { vertices } = obj;
 	const keys = Object.keys(obj);
 	const keysOfVer = keys.filter(el => el !== 'vertices');
@@ -62,7 +54,7 @@ const checkParams = arr => {
 				return `${val} of property ${key} of element ${el.vertices} is wrong`;
 			}
 
-			if (key === 'vertices' && !isPropVertMatchesNames(el)) {
+			if (key === 'vertices' && !isPropVertMatchesNamesOfSides(el)) {
 				return `names of properties of vertices propety don\'t match ${val}`;
 			}
 		}
@@ -73,6 +65,15 @@ const checkParams = arr => {
 	}
 
 	return 'check';
+}
+
+const getArea = obj => {
+	const [a, b, c] = Object.values(obj).filter(el => typeof el === 'number');
+	// Geron's formula
+	const halfP = (a + b + c) / 2;
+	const area = Math.floor(Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c)));
+
+	return area;
 }
 
 const sortiTriangles = arr => {

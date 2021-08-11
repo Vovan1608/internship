@@ -40,17 +40,17 @@ const renderChessDesk = (height, width, char) => {
 	const check = chekParams(height, width, char);
 
 	if (check === 'check') {
-		const space = ' ';
+		const SPACE = ' ';
 		const lineBreak = '\n';
 		let resultStr = '';
 
-		for (let i = 0; i < height; i += 1) {
+		for (let i = 0; i < height * width; i += 1) {
 
-			for (let j = 0; j < width; j += 1) {
-				resultStr += (i + j) % 2 ? space : char;
+			resultStr += i % 2 === 0 ? char : SPACE;
+
+			if (i % width === 0) {
+				resultStr += lineBreak;
 			}
-
-			resultStr += lineBreak;
 		}
 
 		return resultStr;
