@@ -48,7 +48,7 @@ const renderChessDesk = (height, width, char) => {
 
 			resultStr += i % 2 === 0 ? char : SPACE;
 
-			if (i > 1 && i % width === 0) {
+			if (i % width + 1 === 0) {
 				resultStr += lineBreak;
 			}
 		}
