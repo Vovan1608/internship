@@ -44,11 +44,11 @@ const renderChessDesk = (height, width, char) => {
 		const lineBreak = '\n';
 		let resultStr = '';
 
-		for (let i = 0; i < height * width; i += 1) {
+		for (let i = 0; i < height * width + height - 1; i += 1) {
 
 			resultStr += i % 2 === 0 ? char : SPACE;
 
-			if (i % width === 0) {
+			if (i > 1 && i % width === 0) {
 				resultStr += lineBreak;
 			}
 		}
