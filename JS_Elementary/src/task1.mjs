@@ -4,7 +4,7 @@ import {
 	isString,
 	isLengthOne,
 	isEven
-} from './helpers.js';
+} from './helpers.mjs';
 
 const chekParams = (...params) => {
 	const [height, width, symbol] = params;

@@ -2,7 +2,7 @@ import {
 	isObject,
 	isNumber,
 	IsStrictInRange
-} from './helpers.js';
+} from './helpers.mjs';
 
 const isPropANumMoreZeroLessMillion = (obj, min, max) => {
 	return Object.values(obj).every(el => isNumber(el) && IsStrictInRange(el, min, max));

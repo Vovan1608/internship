@@ -2,7 +2,7 @@ import {
 	isInteger,
 	isObject,
 	isPropInObj
-} from './helpers.js';
+} from './helpers.mjs';
 
 const checkParams = param => {
 	if (!param) {

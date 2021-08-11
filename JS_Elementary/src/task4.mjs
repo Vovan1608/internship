@@ -1,7 +1,7 @@
 import {
 	isInRange,
 	isInteger
-} from './helpers.js';
+} from './helpers.mjs';
 
 const checkParam = param => {
 	const min = 10;

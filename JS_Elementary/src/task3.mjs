@@ -2,7 +2,7 @@ import {
 	isArr,
 	isNumber,
 	isObject
-} from './helpers.js';
+} from './helpers.mjs';
 
 const isValidLengthOfObj = obj => {
 	const NUM_PROPS = 4;

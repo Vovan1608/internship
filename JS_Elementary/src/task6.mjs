@@ -1,4 +1,4 @@
-import {isInteger} from './helpers.js';
+import {isInteger} from './helpers.mjs';
 
 const checkParams = (...params) => {
 	if (!params.length) {

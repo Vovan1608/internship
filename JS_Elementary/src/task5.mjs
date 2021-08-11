@@ -3,7 +3,7 @@ import {
 	isInRange,
 	isPropInObj,
 	isInteger
-} from './helpers.js'
+} from './helpers.mjs'
 
 const makeArrOfDigits = num => {
 	const MAX_LENGTH_OF_TICKET_NUM = 6;
