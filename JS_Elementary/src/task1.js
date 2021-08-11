@@ -45,24 +45,26 @@ const renderChessDesk = (height, width, char) => {
 		const lineBreak = '\n';
 		const limit = height * width + 1;
 
-		let resultStr = '';
+		let str = '';
 		let newLine = 1;
 
 		for (let i = 1; i < limit; i += 1) {
 
-			if (isEven(width) && isEven(newLine)) {
-				resultStr += i % 2 ? SPACE : char;
+			if (!isEven(width) || isEven(width) && !isEven(newLine)) {
+				str += !isEven(i) ? char : SPACE;
 			}
 
-			if (!isEven(width) || isEven(width) && !isEven(newLine)) {
-				resultStr += i % 2 ? char : SPACE;
+			if (isEven(width) && isEven(newLine)) {
+				str += !isEven(i) ? SPACE : char;
 			}
 
 			if (i % width === 0) {
-				resultStr += lineBreak;
+				str += lineBreak;
 				newLine += 1;
 			}
 		}
+
+		const resultStr = str.slice(0, -1);
 
 		return resultStr;
 	}
