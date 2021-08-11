@@ -23,9 +23,10 @@ const getNumericalSiquence = (length, minSqrVal) => {
 
 	if (check === 'checked') {
 		let count = Math.ceil(Math.sqrt(minSqrVal));
-		const resultStr = Array.from({length}, _ => count += 1).toString();
+		const resultArr = Array.from({length}, _ => count += 1);
+		const result = resultArr.toString();
 
-		return resultStr;
+		return result;
 	}
 
 	return {status: 'failed', reason: check}

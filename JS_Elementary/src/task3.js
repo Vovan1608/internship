@@ -79,7 +79,8 @@ const sortiTriangles = arr => {
 	const check = checkParams(arr);
 
 	if (check === 'check')  {
-		const sortedStore = arr.sort((cur, nxt) => getArea(nxt) - getArea(cur));
+		const copy = [...arr];
+		const sortedStore = copy.sort((cur, nxt) => getArea(nxt) - getArea(cur));
 		const names = sortedStore.map(el => el.vertices);
 
 		return names;

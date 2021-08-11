@@ -13,14 +13,18 @@ const checkParams = param => {
 		return 'param should be object';
 	}
 
-	if (Object.keys(param).length === 1) {
+	const len = Object.keys(param).length;
+
+	if (len === 1) {
 		if (!isPropInObj(param, 'length')) {
-			return isPropInObj(param, 'length') || 'context must have property length';
+			return 'context must have property length';
 		}
-	} else {
+	} else if (len === 2) {
 		if (!isPropInObj(param, 'min', 'max')) {
 			return 'context must have properties min and max';
 		}
+	} else {
+		return 'context must have only properties min, max or only property length';
 	}
 
 	if (!Object.values(param).every(el => isInteger(el) && el > 1)) {
@@ -31,9 +35,10 @@ const checkParams = param => {
 }
 
 const getFibonachi = num => {
-	// Binet's formula
-	const a = (1 + 5 ** 0.5) / 2;
-	const resultFibonachi = Math.round(a ** num / 5 ** 0.5);
+	// Bine's formula
+	const KOEF = 5 ** 0.5;
+	const CNST = (1 + KOEF) / 2;
+	const resultFibonachi = Math.round(CNST ** num / KOEF);
 
 	return resultFibonachi;
 }
@@ -49,18 +54,16 @@ const getFibonachiFromRange = context => {
 		}
 
 		if (!length) {
-			length = max;
+			length = max - min + 1;
+			min -= 1;
 		} else {
-			min = 0;
+			min = -1;
 		}
 
-		let resultStr = '';
+		const resultArr = Array.from({length}, _ => getFibonachi(min += 1));
+		const resultStr = resultArr.toString();
 
-		for (let i = min; i <= length; i += 1) {
-			resultStr += `${getFibonachi(i)},`;
-		}
-
-		return resultStr.slice(0, -1);
+		return resultStr;
 	}
 
 	return {status: 'failed', reason: check}
