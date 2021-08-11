@@ -6,8 +6,10 @@ const willISellAllTickets = line => {
 		const FIFTY = 50;
 		const HUND = 100;
 
+		let flag = 'NO';
+
 		if (line[0] === FIFTY || line[0] === HUND || line[1] === HUND || line[2] === HUND) {
-			return 'NO';
+			return flag;
 		}
 
 		const numOfBill25$AsChangeFromHundr = 3;
@@ -26,9 +28,10 @@ const willISellAllTickets = line => {
 				if (bill25$) {
 					bill25$ -= 1;
 					bill50$ += 1;
-				} else {
-					return 'NO';
 				}
+
+				flag = 'NO';
+				break;
 			}
 
 			if (line[i] === HUND){
@@ -43,7 +46,7 @@ const willISellAllTickets = line => {
 			}
 		}
 
-		return 'YES';
+		return flag;
 	}
 
 	return 'wrong line';
