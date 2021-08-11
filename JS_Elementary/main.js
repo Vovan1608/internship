@@ -7,7 +7,7 @@ import { getNumericalSiquence } from './src/task6.js';
 import { getFibonachiFromRange } from './src/task7.js';
 import { triangels } from './src/data.js';
 
-console.log(renderChessDesk(4, 6, '#'));
+console.log(renderChessDesk(5, 8, '#'));
 // console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 3}));
 // console.log(sortiTriangles(triangels));
 // console.log(getPalindrome(12344327));

@@ -2,7 +2,8 @@ import {
 	isInRange,
 	isInteger,
 	isString,
-	isLengthOne
+	isLengthOne,
+	isEven
 } from './helpers.js';
 
 const chekParams = (...params) => {
@@ -42,16 +43,27 @@ const renderChessDesk = (height, width, char) => {
 	if (check === 'check') {
 		const SPACE = ' ';
 		const lineBreak = '\n';
-		let resultStr = '';
+		const limit = height * width + 1;
 
-		for (let i = 0; i < height * width; i += 1) {
-			resultStr += i % 2 === 0 ? char : SPACE;
+		let resultStr = '';
+		let newLine = 1;
+
+		for (let i = 1; i < limit; i += 1) {
+
+			if (isEven(width) && isEven(newLine)) {
+				resultStr += i % 2 ? SPACE : char;
+			}
+
+			if (!isEven(width) || isEven(width) && !isEven(newLine)) {
+				resultStr += i % 2 ? char : SPACE;
+			}
 
 			if (i % width === 0) {
 				resultStr += lineBreak;
+				newLine += 1;
 			}
 		}
-		console.log(resultStr.length);
+
 		return resultStr;
 	}
 

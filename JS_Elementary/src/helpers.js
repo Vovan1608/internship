@@ -18,6 +18,8 @@ const isPropInObj = (obj, ...props) => props.every(prop => prop in obj);
 
 const isArr = arr => Array.isArray(arr);
 
+const isEven = el => el % 2 === 0;
+
 export {
 	isInRange,
 	IsStrictInRange,
@@ -28,5 +30,6 @@ export {
 	isObject,
 	isNumber,
 	isPropInObj,
-	isArr
+	isArr,
+	isEven
 }
