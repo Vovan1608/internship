@@ -1,7 +1,7 @@
 import { fruits } from './data.js';
 
-const result = fruits.reduce((acc, next, i) => {
-	acc[i] = next[0];
+const result = fruits.reduce((acc, el) => {
+	acc[acc.length] = el[0];
 
 	return acc;
 }, []);
