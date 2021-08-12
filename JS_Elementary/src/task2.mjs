@@ -35,18 +35,19 @@ const checkEnvelops = (obj1, obj2) => {
 
 	if (check === 'check') {
 		const [frstHorsnt, frstVert, scndHorsnt, scndVert] = Object.values({...obj1, ...obj2});
+		let result = 0;
 
 		if (frstHorsnt < scndHorsnt && frstVert < scndVert ||
 				frstHorsnt < scndVert && frstVert < scndHorsnt) {
-			return 1;
+			result = 1;
 		}
 
 		if (frstHorsnt > scndHorsnt && frstVert > scndVert ||
 				frstHorsnt > scndVert && frstVert > scndHorsnt) {
-			return 2;
+			result = 2;
 		}
 
-		return 0;
+		return result;
 	}
 
 	return {status: 'failed', reason: check}
