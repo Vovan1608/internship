@@ -76,7 +76,7 @@ const getArea = obj => {
 	return area;
 }
 
-const sortiTriangles = arr => {
+const sortTriangles = arr => {
 	const check = checkParams(arr);
 
 	if (check === 'check')  {
@@ -90,4 +90,4 @@ const sortiTriangles = arr => {
 	return {status: 'failed', reason: check}
 }
 
-export {sortiTriangles}
+export {sortTriangles}
