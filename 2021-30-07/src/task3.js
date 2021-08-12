@@ -6,16 +6,16 @@ const willISellAllTickets = line => {
 		const FIFTY = 50;
 		const HUND = 100;
 
-		let flag = 'NO';
+		let flag = 'YES';
 
 		if (line[0] === FIFTY || line[0] === HUND || line[1] === HUND || line[2] === HUND) {
-			return flag;
+			return 'NO';
 		}
 
-		const numOfBill25$AsChangeFromHundr = 3;
+		const bill25$AsChangeFromHundr = 3;
+		const limit = line.length;
 		let bill25$ = 0;
 		let bill50$ = 0;
-		let limit = line.length;
 
 		for (let i = 0; i < limit; i += 1) {
 
@@ -24,26 +24,25 @@ const willISellAllTickets = line => {
 				continue;
 			}
 
-			if (line[i] === FIFTY) {
-				if (bill25$) {
-					bill25$ -= 1;
-					bill50$ += 1;
-				}
-
-				flag = 'NO';
-				break;
+			if (line[i] === FIFTY && bill25$) {
+				bill25$ -= 1;
+				bill50$ += 1;
+				continue;
 			}
 
-			if (line[i] === HUND){
-				if (!bill50$ && bill25$ >= numOfBill25$AsChangeFromHundr) {
-					bill25$ -= numOfBill25$AsChangeFromHundr;
-				} else if (bill50$ && bill25$) {
-					bill25$ -= 1;
-					bill50$ -= 1;
-				} else {
-					return 'NO';
-				}
+			if (line[i] === HUND && bill25$ && bill50$){
+				bill50$ -= 1;
+				bill25$ -= 1;
+				continue;
 			}
+
+			if (line[i] === HUND && bill25$ === bill25$AsChangeFromHundr){
+				bill25$ -= bill25$AsChangeFromHundr;
+				continue;
+			}
+
+			flag = 'NO';
+			break;
 		}
 
 		return flag;

@@ -39,7 +39,7 @@ const getQuipuStr = num => {
 const calculate = quipuStr => {
 	if (isQuipuStr(quipuStr)) {
 		const matchZnak = /[-\*\/\+]/g;
-		const znak = quipuStr.match(matchZnak).join();
+		const znak = quipuStr.match(matchZnak)[0];
 		const [leftSide, rightSide] = quipuStr.split(znak);
 		const res = doMathAction(znak, getNum(leftSide), getNum(rightSide));
 		return getQuipuStr(res);
@@ -48,4 +48,4 @@ const calculate = quipuStr => {
 	return 'wrong quipu string';
 }
 
-// console.log(calculate('@~@@+@@~~'));
+// console.log(calculate('@~~~*@@~~'));

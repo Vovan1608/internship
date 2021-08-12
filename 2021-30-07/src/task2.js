@@ -13,13 +13,14 @@ const getPartitial = num => {
 			return [[num / minEven, num / minEven], num];
 		}
 
-		const numOfTimesThree = ~~(num / minOddMoreOne);
+		const numOfTimesThree = Math.floor(num / minOddMoreOne);
 		const arrNumsOfTimesThree = Array.from({length: numOfTimesThree}, _ => minOddMoreOne);
 		const reminder = num % minOddMoreOne;
 		let res = minOddMoreOne ** numOfTimesThree;
+		let resultArr;
 
 		if (!reminder) {
-			return [arrNumsOfTimesThree, res];
+			resultArr = [arrNumsOfTimesThree, res];
 		}
 
 		if (reminder === 1) {
@@ -27,11 +28,13 @@ const getPartitial = num => {
 			tempArr[tempArr.length - 1] -= 1;
 			tempArr.push(minEven);
 			arrNumsOfTimesThree[0] += 1;
-			return [arrNumsOfTimesThree, tempArr, res / minOddMoreOne * minEven * minEven];
+			resultArr = [arrNumsOfTimesThree, tempArr, res / minOddMoreOne * minEven * minEven];
 		}
 
 		arrNumsOfTimesThree.push(minEven);
-		return [arrNumsOfTimesThree, res * minEven];
+		resultArr = [arrNumsOfTimesThree, res * minEven];
+
+		return resultArr;
 	}
 
 	return 'wrong num';
