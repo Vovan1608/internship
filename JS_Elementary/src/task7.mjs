@@ -69,5 +69,4 @@ const getFibonachiFromRange = context => {
 	return {status: 'failed', reason: check}
 }
 
-
 export {getFibonachiFromRange}

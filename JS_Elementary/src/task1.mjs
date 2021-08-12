@@ -43,30 +43,29 @@ const renderChessDesk = (height, width, char) => {
 	if (check === 'check') {
 		const SPACE = ' ';
 		const lineBreak = '\n';
-		const limit = height * width + 1;
+		const EMPTY = '';
+		const HEIGHT_IS_MORE_ONE = height > 1;
 
-		let str = '';
-		let newLine = 1;
+		let [oddLine, evenLine, tempStr] = [EMPTY, EMPTY, EMPTY];
 
-		for (let i = 1; i < limit; i += 1) {
+		for (let i = 0; i < width; i += 1) {
+			oddLine += isEven(i) ? char : SPACE;
 
-			if (!isEven(width) || isEven(width) && !isEven(newLine)) {
-				str += !isEven(i) ? char : SPACE;
-			}
-
-			if (isEven(width) && isEven(newLine)) {
-				str += !isEven(i) ? SPACE : char;
-			}
-
-			if (i % width === 0) {
-				str += lineBreak;
-				newLine += 1;
+			if (HEIGHT_IS_MORE_ONE) {
+				evenLine += isEven(i) ? SPACE : char;
 			}
 		}
 
-		const resultStr = str.slice(0, -1);
+		tempStr += HEIGHT_IS_MORE_ONE ? oddLine + lineBreak + evenLine + lineBreak : oddLine;
 
-		return resultStr;
+		for (let i = 2; i < height; i += 1) {
+			tempStr += isEven(i) ? oddLine : evenLine;
+			tempStr += lineBreak;
+		}
+
+		const resStr = HEIGHT_IS_MORE_ONE ? tempStr.slice(0, -1) : tempStr;
+
+		return resStr;
 	}
 
 	return {status: 'failed', reason: check}
