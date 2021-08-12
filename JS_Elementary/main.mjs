@@ -11,7 +11,7 @@ import { triangels } from './src/data.mjs';
 // console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 3}));
 // console.log(sortTriangles(triangels));
 // console.log(getPalindrome(12344327));
-// console.log(getWinnerMethod({min: 200200, max: 222222}));
+console.log(getWinnerMethod({min: 1001, max: 1010}));
 // console.log(getNumericalSiquence(5, 4));
 // console.log(getFibonachiFromRange({length: 7}));
 // console.log(getFibonachiFromRange({min: 2, max: 5}));

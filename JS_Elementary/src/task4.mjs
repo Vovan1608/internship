@@ -37,16 +37,12 @@ const getPalindrome = num => {
 	if (check === 'check') {
 		const numAsStr = String(num);
 		const limit = numAsStr.length;
-		let palindrom = '';
-		let tempStr = '';
-
-		let start = 0;
-		let end = 0;
+		let [palindrom, tempStr, start, end] = ['', '', 0, 0];
 
 		for (let i = 0; i < limit; i += 1) {
-			const len1 = expandFromCenter(numAsStr, i, i);
-			const len2 = expandFromCenter(numAsStr, i, i + 1);
-			const len = Math.max(len1, len2);
+			const lenIfOdd = expandFromCenter(numAsStr, i, i);
+			const lenIfEven = expandFromCenter(numAsStr, i, i + 1);
+			const len = Math.max(lenIfOdd, lenIfEven);
 
 			if (len > end - start && len > 1) {
 				start = Math.ceil(i - (len - 1) / 2);

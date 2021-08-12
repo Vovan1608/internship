@@ -4,14 +4,14 @@ let assert = chai.assert;
 
 describe('getWinnerMethod', () => {
 
-  const obj = {min: 200200, max: 222222};
+  const obj = {min: 1010, max: 1001};
 
   it ('функция возвращает тип данных "object"', () => {
     assert.isObject(getWinnerMethod(obj));
   });
 
-  it (`функция возвращает {winner: "hard", tickets: {simple: 810, hard: 1414}}`, () => {
-    const answer = {winner: "hard", tickets: {simple: 810, hard: 1414}}
+  it (`функция возвращает {winner: "simple", tickets: {simple: 2, hard: 1}}`, () => {
+    const answer = {winner: "simple", tickets: {simple: 2, hard: 1}}
 
     assert.deepEqual(getWinnerMethod(obj), answer);
   });
