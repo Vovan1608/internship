@@ -10,6 +10,11 @@ describe ('renderChessDesk', () => {
     assert.equal(renderChessDesk(5, 7, '#'), resultStr);
   });
 
+  it('height = 2, width = 6, symbol = #', () => {
+    const resultStr = '# # # \n # # #';
+    assert.equal(renderChessDesk(2, 6, '#'), resultStr);
+  });
+
   it('length should be 39', () => {
     const resultStr = renderChessDesk(5, 7, '#');
     assert.equal(resultStr.length, 39);
@@ -28,6 +33,26 @@ describe ('renderChessDesk', () => {
   it('length should be 1', () => {
     const resultStr = renderChessDesk(1, 1, '#');
     assert.equal(resultStr.length, 1);
+  });
+
+  it('height is not a number or is not an integer', () => {
+    const reason = 'height is not a number or is not an integer';
+    assert.deepEqual(renderChessDesk('1', 7, '#'), {status: 'failed', reason});
+  });
+
+  it('width is not a number or is not an integer', () => {
+    const reason = 'width is not a number or is not an integer';
+    assert.deepEqual(renderChessDesk(1, '7', '#'), {status: 'failed', reason});
+  });
+
+  it('symbol should be string', () => {
+    const reason = 'symbol should be string';
+    assert.deepEqual(renderChessDesk(1, 7, 5), {status: 'failed', reason});
+  });
+
+  it('symbol should be length 1', () => {
+    const reason = 'symbol should be length 1';
+    assert.deepEqual(renderChessDesk(1, 7, '**'), {status: 'failed', reason});
   });
 });
 

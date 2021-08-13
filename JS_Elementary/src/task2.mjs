@@ -4,36 +4,49 @@ import {
 	IsStrictInRange
 } from './helpers.mjs';
 
-const isPropANumMoreZeroLessMillion = (obj, min, max) => {
-	return Object.values(obj).every(el => isNumber(el) && IsStrictInRange(el, min, max));
-}
-
-const checkParams = (obj1, obj2) => {
+const checkParams = (...params) => {
+	const numsOfParameter = 2;
+	const numsOfProperties = 2;
 	const min = 0;
 	const max = 1e6;
+	const [p1, p2] = params;
 
-	for (const [key, val] of Object.entries({ obj1, obj2 })) {
+	for (let i = 0; i < numsOfParameter; i += 1) {
+		if (!params[i]) {
+			return `there isn't ${i + 1} parameter`;
+		}
+
+		if (!isObject(params[i])) {
+			return `${params[i]} isn't object`;
+		}
+
+		if (Object.values(params[i]).length !== numsOfProperties) {
+			return `${i + 1} property must have ${numsOfProperties} properties`;
+		}
+	}
+
+	for (const [key, val] of Object.entries({ ...p1, ...p2 })) {
 
 		if (!val) {
 			return `there isn\'t ${key} parameter`;
 		}
 
-		if (!isObject(val)) {
-			return `${key} should be object`;
+		if (!isNumber(val)) {
+			return `${key} should be a number`;
 		}
 
-		if (!isPropANumMoreZeroLessMillion(val, min, max)) {
-			return `properties of ${key} should be a number in range from ${min} to ${max}`;
+		if (!IsStrictInRange(val, min, max)) {
+			return `properties of ${key} should be in range from ${min} to ${max}`;
 		}
 	}
 
-	return 'check';
+	return 'checked';
 }
 
 const checkEnvelops = (obj1, obj2) => {
 	const check = checkParams(obj1, obj2);
 
-	if (check === 'check') {
+	if (check === 'checked') {
 		const [frstHorsnt, frstVert, scndHorsnt, scndVert] = Object.values({...obj1, ...obj2});
 		let result = 0;
 
