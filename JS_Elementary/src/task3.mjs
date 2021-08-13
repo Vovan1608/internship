@@ -49,7 +49,12 @@ const checkParams = arr => {
 			return `wrong number of properties of element ${el.vertices}`;
 		}
 
+		if (!isValidValOfVertProps(el)) {
+			return `can\'t be triangle with that parameters in ${el.vertices}`;
+		}
+
 		for (let [key, val] of Object.entries(el)) {
+
 			if (key === 'vertices' && !isValidPropVerticesLength(val)) {
 				return `${val} of property ${key} of element ${el.vertices} is wrong`;
 			}
@@ -58,13 +63,9 @@ const checkParams = arr => {
 				return `names of properties of vertices propety don\'t match ${val}`;
 			}
 		}
-
-		if (!isValidValOfVertProps(el)) {
-			return `can\'t be triangle with that parameters in ${el.vertices}`;
-		}
 	}
 
-	return 'check';
+	return 'checked';
 }
 
 const getArea = obj => {
@@ -79,7 +80,7 @@ const getArea = obj => {
 const sortTriangles = arr => {
 	const check = checkParams(arr);
 
-	if (check === 'check')  {
+	if (check === 'checked')  {
 		const copy = [...arr];
 		const sortedStore = copy.sort((cur, nxt) => getArea(nxt) - getArea(cur));
 		const names = sortedStore.map(el => el.vertices);
