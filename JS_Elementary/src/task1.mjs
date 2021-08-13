@@ -44,26 +44,31 @@ const renderChessDesk = (height, width, char) => {
 		const SPACE = ' ';
 		const lineBreak = '\n';
 		const EMPTY = '';
-		const HEIGHT_IS_MORE_ONE = height > 1;
 
 		let [oddLine, evenLine, tempStr] = [EMPTY, EMPTY, EMPTY];
 
-		for (let i = 0; i < width; i += 1) {
-			oddLine += isEven(i) ? char : SPACE;
+		for (let i = 1; i <= width ; i += 1) {
+			oddLine += isEven(i) ? SPACE : char;
 
-			if (HEIGHT_IS_MORE_ONE) {
-				evenLine += isEven(i) ? SPACE : char;
+			if (height > 1) {
+				evenLine += isEven(i) ? char : SPACE;
+			}
+
+			if (i === width) {
+				tempStr += oddLine + lineBreak;
+			}
+
+			if (i === width && height > 1) {
+				tempStr += evenLine + lineBreak;
 			}
 		}
 
-		tempStr += HEIGHT_IS_MORE_ONE ? oddLine + lineBreak + evenLine + lineBreak : oddLine;
-
-		for (let i = 2; i < height; i += 1) {
-			tempStr += isEven(i) ? oddLine : evenLine;
+		for (let i = 3; i <= height; i += 1) {
+			tempStr += isEven(i) ? evenLine : oddLine;
 			tempStr += lineBreak;
 		}
 
-		const resStr = HEIGHT_IS_MORE_ONE ? tempStr.slice(0, -1) : tempStr;
+		const resStr = tempStr.slice(0, -1);
 
 		return resStr;
 	}
@@ -72,3 +77,48 @@ const renderChessDesk = (height, width, char) => {
 }
 
 export {renderChessDesk}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// for (let i = 1; i <= width || i <= width + height - 2; i += 1) {
+// 	if (i <= width) {
+// 		oddLine += isEven(i) ? SPACE : char;
+// 	}
+
+// 	if (i <= width && height > 1) {
+// 		evenLine += isEven(i) ? char : SPACE;
+// 	}
+
+// 	if (i === width) {
+// 		tempStr += oddLine + lineBreak;
+// 	}
+
+// 	if (i === width && height > 1) {
+// 		tempStr += evenLine + lineBreak;
+// 	}
+
+// 	if (i > width && isEven(width)) {
+// 		tempStr += isEven(i) ? evenLine : oddLine;
+// 		tempStr += lineBreak;
+// 	}
+
+// 	if (i > width && !isEven(width)) {
+// 		tempStr += isEven(i) ? oddLine : evenLine;
+// 		tempStr += lineBreak;
+// 	}
+// }
