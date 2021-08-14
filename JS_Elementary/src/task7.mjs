@@ -15,16 +15,16 @@ const checkParams = param => {
 
 	const len = Object.keys(param).length;
 
-	if (len === 1) {
-		if (!isPropInObj(param, 'length')) {
-			return 'context must have property length';
-		}
-	} else if (len === 2) {
-		if (!isPropInObj(param, 'min', 'max')) {
-			return 'context must have properties min and max';
-		}
-	} else {
-		return 'context must have only properties min, max or only property length';
+	if (len === 1 && !isPropInObj(param, 'length')) {
+		return 'context must have property length';
+	}
+
+	if (len === 2 && !isPropInObj(param, 'min', 'max')) {
+		return 'context must have properties min and max';
+	}
+
+	if (len > 2) {
+		return 'context must have maximum two parameters';
 	}
 
 	if (!Object.values(param).every(el => isInteger(el) && el > 1)) {

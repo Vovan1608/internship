@@ -1,17 +1,23 @@
 import {isInteger} from './helpers.mjs';
 
 const checkParams = (...params) => {
-	if (!params.length) {
+	
+	if (!params) {
 		return 'not params at all';
 	}
 
 	for (let el of params) {
+
+		if (!el) {
+			return 'shold be two parameters';
+		}
+
 		if (!isInteger(el)) {
-			return `parameters shoud be an iteger number`;
+			return 'parameters shoud be an iteger number';
 		}
 
 		if (el <= 0) {
-			return `parameters should be greater 0`;
+			return 'parameters should be greater 0';
 		}
 	}
 
