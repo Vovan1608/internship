@@ -6,8 +6,7 @@ import {
 	isEven
 } from './helpers.mjs';
 
-const chekParams = (...params) => {
-	const [height, width, symbol] = params;
+const chekParams = (height, width, symbol) => {
 	const min = 1;
 	const max = 20;
 
@@ -34,13 +33,13 @@ const chekParams = (...params) => {
 		}
 	}
 
-	return 'check';
+	return 'checked';
 }
 
 const renderChessDesk = (height, width, char) => {
 	const check = chekParams(height, width, char);
 
-	if (check === 'check') {
+	if (check === 'checked') {
 		const SPACE = ' ';
 		const lineBreak = '\n';
 		const EMPTY = '';
@@ -63,11 +62,13 @@ const renderChessDesk = (height, width, char) => {
 
 			if (i === width && height > 1) {
 				tempStr += evenLine + lineBreak;
+				continue;
 			}
 
 			if (i > width && isEven(width)) {
 				tempStr += isEven(i) ? evenLine : oddLine;
 				tempStr += lineBreak;
+				continue;
 			}
 
 			if (i > width && !isEven(width)) {
