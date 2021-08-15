@@ -43,38 +43,27 @@ const renderChessDesk = (height, width, char) => {
 		const SPACE = ' ';
 		const lineBreak = '\n';
 		const EMPTY = '';
+		const isHeightMoreOne = height > 1;
 
-		let [oddLine, evenLine, tempStr] = [EMPTY, EMPTY, EMPTY];
+		let [tempStr, oddLine, evenLine]= [EMPTY, EMPTY, EMPTY];
 
-		for (let i = 1; i <= width || i <= width + height - 2; i += 1) {
+		for (let i = 1; i <= width; i += 1) {
+			oddLine += isEven(i) ? SPACE : char;
 
-			if (i <= width) {
-				oddLine += isEven(i) ? SPACE : char;
+			if (isHeightMoreOne) {
+				evenLine += isEven(i) ? char: SPACE;
 			}
+		}
 
-			if (i <= width && height > 1) {
-				evenLine += isEven(i) ? char : SPACE;
-			}
+		tempStr += oddLine + lineBreak;
 
-			if (i === width) {
-				tempStr += oddLine + lineBreak;
-			}
+		if (isHeightMoreOne) {
+			tempStr += evenLine + lineBreak;
+			tempStr += tempStr.repeat((height - 2) / 2);
+		}
 
-			if (i === width && height > 1) {
-				tempStr += evenLine + lineBreak;
-				continue;
-			}
-
-			if (i > width && isEven(width)) {
-				tempStr += isEven(i) ? evenLine : oddLine;
-				tempStr += lineBreak;
-				continue;
-			}
-
-			if (i > width && !isEven(width)) {
-				tempStr += isEven(i) ? oddLine : evenLine;
-				tempStr += lineBreak;
-			}
+		if (isHeightMoreOne && !isEven(height)) {
+			tempStr += oddLine + lineBreak;
 		}
 
 		const resStr = tempStr.slice(0, -1);
