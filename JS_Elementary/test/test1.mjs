@@ -1,6 +1,7 @@
 import {renderChessDesk} from '../src/task1.mjs';
 
 mocha.setup('bdd');
+
 let assert = chai.assert;
 
 describe ('renderChessDesk', () => {
@@ -13,6 +14,11 @@ describe ('renderChessDesk', () => {
   it('height = 2, width = 6, symbol = #', () => {
     const resultStr = '# # # \n # # #';
     assert.equal(renderChessDesk(2, 6, '#'), resultStr);
+  });
+
+  it('height = 1, width = 1, symbol = #', () => {
+    const resultStr = '#';
+    assert.equal(renderChessDesk(1, 1, '#'), resultStr);
   });
 
   it('length should be 39', () => {
