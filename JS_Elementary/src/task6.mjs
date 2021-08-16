@@ -28,11 +28,13 @@ const getNumericalSiquence = (length, minSqrVal) => {
 	const check = checkParams(length, minSqrVal);
 
 	if (check === 'checked') {
-		let count = Math.ceil(Math.sqrt(minSqrVal)) - 1;
-		const resultArr = Array.from({length}, _ => count += 1);
-		const resultStr = resultArr.toString();
+		let count = Math.ceil(Math.sqrt(minSqrVal));
+		const limit = count + length;
+		let result = '';
 
-		return resultStr;
+		for (; count < limit; result += `${count++},`) {}
+
+		return result.slice(0, -1);
 	}
 
 	return {status: 'failed', reason: check}

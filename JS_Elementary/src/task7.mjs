@@ -53,17 +53,16 @@ const getFibonachiFromRange = context => {
 			[min, max] = [max, min];
 		}
 
-		if (!length) {
-			length = max - min + 1;
-			min -= 1;
-		} else {
-			min = -1;
+		if (length) {
+			max = length - 1;
+			min = 0;
 		}
 
-		const resultArr = Array.from({length}, _ => getFibonachi(min += 1));
-		const resultStr = resultArr.toString();
+		let result = '';
 
-		return resultStr;
+		for (; min <= max; result += `${getFibonachi(min++)},`) {}
+
+		return result.slice(0, -1);
 	}
 
 	return {status: 'failed', reason: check}
