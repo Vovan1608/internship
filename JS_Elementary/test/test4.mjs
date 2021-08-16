@@ -16,6 +16,10 @@ describe('getPalindrome', () => {
     assert.equal(getPalindrome(234554321852258), '23455432');
   });
 
+  it('return 0 if number doesn\'t contain palindrom', () => {
+    assert.equal(getPalindrome(123456), 0);
+  });
+
   it('not parameter', () => {
     const reason = 'not parameter at all';
     assert.deepEqual(getPalindrome(), {status: 'failed', reason});

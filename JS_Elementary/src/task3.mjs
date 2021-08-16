@@ -22,15 +22,14 @@ const isPropVertMatchesNamesOfSides = obj => {
 	return vertices === keysOfVer.join('').toUpperCase();
 }
 
-const isTriangel = (...triangelsSides) => {
-	const [a, b, c] = triangelsSides;
+const isTriangel = (a, b, c) => {
 	return (
-		triangelsSides.every(el => isNumber(el) && el > 0) &&
+		[a, b, c].every(el => isNumber(el) && el > 0) &&
 		c <= a + b && a <= b + c && b <= a + c
 	);
 }
 
-const isValidValOfVertProps = obj => {
+const isValidValOfSidesProps = obj => {
 	const triangelsSides = Object.values(obj).filter(el => isNumber(el));
 	return isTriangel(...triangelsSides);
 }
@@ -49,7 +48,7 @@ const checkParams = arr => {
 			return `wrong number of properties of element ${el.vertices}`;
 		}
 
-		if (!isValidValOfVertProps(el)) {
+		if (!isValidValOfSidesProps(el)) {
 			return `can\'t be triangle with that parameters in ${el.vertices}`;
 		}
 

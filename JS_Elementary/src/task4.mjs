@@ -55,7 +55,7 @@ const getPalindrome = num => {
 			}
 		}
 
-		return palindrom;
+		return palindrom || 0;
 	}
 
 	return {status: 'failed', reason: check}
