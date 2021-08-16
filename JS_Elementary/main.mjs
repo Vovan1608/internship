@@ -10,7 +10,7 @@ import { triangels } from './src/data.mjs';
 // console.log(renderChessDesk(4, 9, '*'));
 // console.log(checkEnvelops({a: 2, b: 3}, {c: 4, d: 3}));
 // console.log(sortTriangles(triangels));
-console.log(getPalindrome(12344327));
+// console.log(getPalindrome(12344327));
 // console.log(getWinnerMethod({min: 1010, max: 1001}));
 // console.log(getNumericalSiquence(5, 144));
 // console.log(getFibonachiFromRange({length: 7}));

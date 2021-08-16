@@ -50,7 +50,6 @@ const checkParam = par => {
 		return 'object has wrong parameters';
 	}
 
-	console.log();
 	if (Object.keys(par).length !== 2) {
 		return 'object must have 2 parameters';
 	}

@@ -1,7 +1,7 @@
 import {isInteger} from './helpers.mjs';
 
 const checkParams = (...params) => {
-	
+
 	if (!params) {
 		return 'not params at all';
 	}
