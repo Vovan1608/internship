@@ -22,13 +22,15 @@ const checkParam = param => {
 	return 'check';
 }
 
-const expandFromCenter = (str, leftSide, rightSide) => {
-	while(leftSide >= 0 && rightSide < str.length && str[leftSide] === str[rightSide]) {
-		leftSide -= 1;
-		rightSide += 1;
+const expandFromCenter = (str, lSide, rSide) => {
+	const limit = str.length;
+
+	while(lSide >= 0 && rSide < limit && str[lSide] === str[rSide]) {
+		lSide -= 1;
+		rSide += 1;
 	}
 
-	return rightSide - leftSide - 1;
+	return rSide - lSide - 1;
 }
 
 const getPalindrome = num => {
