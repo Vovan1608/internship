@@ -1,5 +1,5 @@
 import { getWinnerMethod } from '../src/task5.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 describe('getWinnerMethod', () => {
   let getWinnerMethodSpy;

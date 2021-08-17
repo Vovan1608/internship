@@ -1,6 +1,6 @@
 const isInteger = num => Number.isInteger(num);
 
-const isString = str => typeof str === 'string';
+const isString = val => typeof val === 'string';
 
 const isInRange = (num, min, max) => num >= min && num <= max;
 
@@ -10,19 +10,15 @@ const isLengthOne = str => str.length === 1;
 
 const isNotAllParams = (...params) => params.every(el => !el);
 
-const isObject = val => val instanceof Object && !Array.isArray(val);
+const isArr = arr => Array.isArray(arr);
+
+const isObject = val => val instanceof Object && !isArr(val);
 
 const isNumber = val => typeof val === 'number';
 
 const isPropInObj = (obj, ...props) => props.every(prop => prop in obj);
 
-const isArr = arr => Array.isArray(arr);
-
 const isEven = el => el % 2 === 0;
-
-const assert = chai.assert;
-const expect = chai.expect;
-const spy = chai.spy;
 
 export {
 	isInRange,
@@ -36,7 +32,4 @@ export {
 	isPropInObj,
 	isArr,
 	isEven,
-	assert,
-	expect,
-	spy
 }

@@ -1,5 +1,5 @@
 import { checkEnvelops } from '../src/task2.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 describe ('checkEnvelops', () => {
   let checkEnvelopsSpy;

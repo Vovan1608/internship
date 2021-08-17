@@ -1,5 +1,5 @@
 import {renderChessDesk} from '../src/task1.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 mocha.setup('bdd');
 

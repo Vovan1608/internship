@@ -1,5 +1,5 @@
 import { getFibonachiFromRange } from '../src/task7.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 describe ('getFibonacci', () => {
   let getFibonachiFromRangeSpy;

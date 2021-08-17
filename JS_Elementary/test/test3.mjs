@@ -1,6 +1,6 @@
 import { sortTriangles } from '../src/task3.mjs';
 import { triangels } from '../src/data.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 describe ('sortTriangles', () => {
   let sortTrianglesSpy;

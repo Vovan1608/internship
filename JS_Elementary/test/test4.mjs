@@ -1,5 +1,5 @@
 import { getPalindrome } from '../src/task4.mjs';
-import {expect, assert, spy} from '../src/helpers.mjs';
+import {expect, assert, spy} from './helpers.mjs';
 
 describe('getPalindrome', () => {
   let getPalindromeSpy;

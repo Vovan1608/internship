@@ -9,31 +9,37 @@ import {
 const chekParams = (height, width, symbol) => {
 	const min = 1;
 	const max = 20;
+	let message = 'checked';
 
 	for (let [key, val] of Object.entries({ height, width, symbol })) {
 
 		if (!val) {
-			return `there isn't ${key} parameter`;
+			message = `there isn't ${key} parameter`;
+			break;
 		}
 
 		if (key !== 'symbol' && !isInteger(val)) {
-			return `${key} is not a number or is not an integer`;
+			message = `${key} is not a number or is not an integer`;
+			break;
 		}
 
 		if (key !== 'symbol' && !isInRange(val, min, max)) {
-			return `${key} should be greater then ${min} and less or equal ${max}`;
+			message = `${key} should be greater then ${min} and less or equal ${max}`;
+			break;
 		}
 
 		if (key === 'symbol' && !isString(val)) {
-			return `${key} should be string`;
+			message = `${key} should be string`;
+			break;
 		}
 
 		if (key === 'symbol' && !isLengthOne(val)) {
-			return `${key} should be length 1`;
+			message = `${key} should be length 1`;
+			break;
 		}
 	}
 
-	return 'checked';
+	return message;
 }
 
 const renderChessDesk = (height, width, char) => {
@@ -41,29 +47,29 @@ const renderChessDesk = (height, width, char) => {
 
 	if (check === 'checked') {
 		const SPACE = ' ';
-		const lineBreak = '\n';
+		const LINE_BREAK = '\n';
 		const EMPTY = '';
-		const isHeightMoreOne = height > 1;
+		const IS_HEIGHT_MORE_ONE = height > 1;
 
 		let [tempStr, oddLine, evenLine]= [EMPTY, EMPTY, EMPTY];
 
 		for (let i = 1; i <= width; i += 1) {
 			oddLine += isEven(i) ? SPACE : char;
 
-			if (isHeightMoreOne) {
+			if (IS_HEIGHT_MORE_ONE) {
 				evenLine += isEven(i) ? char: SPACE;
 			}
 		}
 
-		tempStr += oddLine + lineBreak;
+		tempStr += oddLine + LINE_BREAK;
 
-		if (isHeightMoreOne) {
-			tempStr += evenLine + lineBreak;
+		if (IS_HEIGHT_MORE_ONE) {
+			tempStr += evenLine + LINE_BREAK;
 			tempStr += tempStr.repeat((height - 2) / 2);
 		}
 
-		if (isHeightMoreOne && !isEven(height)) {
-			tempStr += oddLine + lineBreak;
+		if (IS_HEIGHT_MORE_ONE && !isEven(height)) {
+			tempStr += oddLine + LINE_BREAK;
 		}
 
 		const resStr = tempStr.slice(0, -1);
