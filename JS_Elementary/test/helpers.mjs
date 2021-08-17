@@ -9,6 +9,5 @@ const exp = (spyFunc, ...params) => {
 export {
 	assert,
 	spy,
-	expect,
 	exp
 }
