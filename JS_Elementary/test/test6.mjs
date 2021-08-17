@@ -1,8 +1,21 @@
 import { getNumericalSiquence } from '../src/task6.mjs';
-
-let assert = chai.assert;
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 describe('getNumberSequence', () => {
+  let getNumericalSiquenceSpy;
+
+  beforeEach(() => {
+    getNumericalSiquenceSpy = spy(getNumericalSiquence);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('checkEnvelops has been called with correct parameters', () => {
+    getNumericalSiquenceSpy(5, 144);
+    expect(getNumericalSiquenceSpy).to.have.been.called.with(5, 144);
+  });
 
   it ('return string "3,4,5,6,7"', () => {
     assert.equal(getNumericalSiquence(5, 5), '3,4,5,6,7');

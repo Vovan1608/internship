@@ -1,10 +1,23 @@
 import { checkEnvelops } from '../src/task2.mjs';
-
-let assert = chai.assert;
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 describe ('checkEnvelops', () => {
+  let checkEnvelopsSpy;
 
-  it(`конверты нельзя вложить друг в друга`, () => {
+  beforeEach(() => {
+    checkEnvelopsSpy = spy(checkEnvelops);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('checkEnvelops has been called with correct parameters', () => {
+    checkEnvelopsSpy({a: 2, b: 3}, {c: 5, d: 6});
+    expect(checkEnvelopsSpy).to.have.been.called.with({a: 2, b: 3}, {c: 5, d: 6});
+  });
+  
+  it('конверты нельзя вложить друг в друга', () => {
     assert.equal(checkEnvelops({a: 5, b: 6}, {c: 5, d: 6}), 0);
   });
 

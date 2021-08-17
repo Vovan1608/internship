@@ -1,10 +1,22 @@
 import { getWinnerMethod } from '../src/task5.mjs';
-
-let assert = chai.assert;
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 describe('getWinnerMethod', () => {
-
+  let getWinnerMethodSpy;
   const obj = {min: 1010, max: 1001};
+
+  beforeEach(() => {
+    getWinnerMethodSpy = spy(getWinnerMethod);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('checkEnvelops has been called with correct parameters', () => {
+    getWinnerMethodSpy(obj);
+    expect(getWinnerMethodSpy).to.have.been.called.with(obj);
+  });
 
   it ('return object', () => {
     assert.isObject(getWinnerMethod(obj));

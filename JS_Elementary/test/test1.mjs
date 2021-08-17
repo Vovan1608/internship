@@ -1,10 +1,24 @@
 import {renderChessDesk} from '../src/task1.mjs';
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 mocha.setup('bdd');
 
-let assert = chai.assert;
-
 describe ('renderChessDesk', () => {
+
+  let renderChessDeskSPY;
+
+  beforeEach(() => {
+    renderChessDeskSPY = spy(renderChessDesk);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('renderChessDesk has been called with correct parameters', () => {
+    renderChessDeskSPY(5, 7, '#');
+    expect(renderChessDeskSPY).to.have.been.called.with(5, 7, '#');
+  });
 
   it('height = 5, width = 7, symbol = #', () => {
     const resultStr = '# # # #\n # # # \n# # # #\n # # # \n# # # #';

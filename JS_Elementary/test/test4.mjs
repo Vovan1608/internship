@@ -1,8 +1,21 @@
 import { getPalindrome } from '../src/task4.mjs';
-
-let assert = chai.assert;
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 describe('getPalindrome', () => {
+  let getPalindromeSpy;
+
+  beforeEach(() => {
+    getPalindromeSpy = spy(getPalindrome);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('checkEnvelops has been called with correct parameters', () => {
+    getPalindromeSpy(12344327);
+    expect(getPalindromeSpy).to.have.been.called.with(12344327);
+  });
 
   it('number 1234437 contains a palindrom 3443', () => {
     assert.equal(getPalindrome(1234437), 3443);

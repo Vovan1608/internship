@@ -1,9 +1,22 @@
 import { sortTriangles } from '../src/task3.mjs';
 import { triangels } from '../src/data.mjs';
-
-let assert = chai.assert;
+import {expect, assert, spy} from '../src/helpers.mjs';
 
 describe ('sortTriangles', () => {
+  let sortTrianglesSpy;
+
+  beforeEach(() => {
+    sortTrianglesSpy = spy(sortTriangles);
+  });
+
+  afterEach(() => {
+    spy.restore();
+  });
+
+  it('checkEnvelops has been called with correct parameters', () => {
+    sortTrianglesSpy(triangels);
+    expect(sortTrianglesSpy).to.have.been.called.with(triangels);
+  });
 
   it('there isn\'t parameter', () => {
     const reason = 'arr is not defined or is not an array';

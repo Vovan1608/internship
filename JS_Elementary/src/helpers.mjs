@@ -20,6 +20,10 @@ const isArr = arr => Array.isArray(arr);
 
 const isEven = el => el % 2 === 0;
 
+const assert = chai.assert;
+const expect = chai.expect;
+const spy = chai.spy;
+
 export {
 	isInRange,
 	IsStrictInRange,
@@ -31,5 +35,8 @@ export {
 	isNumber,
 	isPropInObj,
 	isArr,
-	isEven
+	isEven,
+	assert,
+	expect,
+	spy
 }
