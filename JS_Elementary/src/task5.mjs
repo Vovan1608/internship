@@ -20,8 +20,8 @@ const computedTicket = num => {
 	const ticketOptions = {
 		fstPart: fst + snd + trd,
 		sndPart: foth + fith + sth,
-		even: fst + trd + fith,
-		odd: snd + foth + sth
+		odd: fst + trd + fith,
+		even: snd + foth + sth
 	}
 
 	return ticketOptions;
