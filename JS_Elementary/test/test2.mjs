@@ -1,5 +1,5 @@
 import { checkEnvelops } from '../src/task2.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import {assert, spy, exp} from './helpers.mjs';
 
 describe ('checkEnvelops', () => {
   let checkEnvelopsSpy;
@@ -14,9 +14,9 @@ describe ('checkEnvelops', () => {
 
   it('checkEnvelops has been called with correct parameters', () => {
     checkEnvelopsSpy({a: 2, b: 3}, {c: 5, d: 6});
-    expect(checkEnvelopsSpy).to.have.been.called.with({a: 2, b: 3}, {c: 5, d: 6});
+    exp(checkEnvelopsSpy, {a: 2, b: 3}, {c: 5, d: 6});
   });
-  
+
   it('конверты нельзя вложить друг в друга', () => {
     assert.equal(checkEnvelops({a: 5, b: 6}, {c: 5, d: 6}), 0);
   });

@@ -1,5 +1,5 @@
 import { getNumericalSiquence } from '../src/task6.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import { exp, assert, spy } from './helpers.mjs';
 
 describe('getNumberSequence', () => {
   let getNumericalSiquenceSpy;
@@ -14,7 +14,7 @@ describe('getNumberSequence', () => {
 
   it('checkEnvelops has been called with correct parameters', () => {
     getNumericalSiquenceSpy(5, 144);
-    expect(getNumericalSiquenceSpy).to.have.been.called.with(5, 144);
+    exp(getNumericalSiquenceSpy, 5, 144);
   });
 
   it ('return string "3,4,5,6,7"', () => {

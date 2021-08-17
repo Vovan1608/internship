@@ -1,5 +1,5 @@
 import { getFibonachiFromRange } from '../src/task7.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import { exp, assert, spy } from './helpers.mjs';
 
 describe ('getFibonacci', () => {
   let getFibonachiFromRangeSpy;
@@ -14,12 +14,12 @@ describe ('getFibonacci', () => {
 
   it('checkEnvelops has been called with object length', () => {
     getFibonachiFromRangeSpy({length: 7});
-    expect(getFibonachiFromRangeSpy).to.have.been.called.with({length: 7});
+    exp(getFibonachiFromRangeSpy, {length: 7});
   });
 
   it('checkEnvelops has been called with object min-max', () => {
     getFibonachiFromRangeSpy({min: 2, max: 5});
-    expect(getFibonachiFromRangeSpy).to.have.been.called.with({min: 2, max: 5});
+    exp(getFibonachiFromRangeSpy, {min: 2, max: 5});
   });
 
   it ('return 1,2,3,5', () => {

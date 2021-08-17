@@ -1,5 +1,5 @@
 import {renderChessDesk} from '../src/task1.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import {assert, spy, exp} from './helpers.mjs';
 
 mocha.setup('bdd');
 
@@ -17,7 +17,7 @@ describe ('renderChessDesk', () => {
 
   it('renderChessDesk has been called with correct parameters', () => {
     renderChessDeskSPY(5, 7, '#');
-    expect(renderChessDeskSPY).to.have.been.called.with(5, 7, '#');
+    exp(renderChessDeskSPY, 5, 7, '#');
   });
 
   it('height = 5, width = 7, symbol = #', () => {

@@ -1,5 +1,5 @@
 import { getWinnerMethod } from '../src/task5.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import { exp, assert, spy } from './helpers.mjs';
 
 describe('getWinnerMethod', () => {
   let getWinnerMethodSpy;
@@ -15,7 +15,7 @@ describe('getWinnerMethod', () => {
 
   it('checkEnvelops has been called with correct parameters', () => {
     getWinnerMethodSpy(obj);
-    expect(getWinnerMethodSpy).to.have.been.called.with(obj);
+    exp(getWinnerMethodSpy, obj);
   });
 
   it ('return object', () => {

@@ -1,5 +1,5 @@
 import { getPalindrome } from '../src/task4.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import { exp, assert, spy } from './helpers.mjs';
 
 describe('getPalindrome', () => {
   let getPalindromeSpy;
@@ -14,7 +14,7 @@ describe('getPalindrome', () => {
 
   it('checkEnvelops has been called with correct parameters', () => {
     getPalindromeSpy(12344327);
-    expect(getPalindromeSpy).to.have.been.called.with(12344327);
+    exp(getPalindromeSpy, 12344327);
   });
 
   it('number 1234437 contains a palindrom 3443', () => {

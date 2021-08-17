@@ -1,6 +1,6 @@
 import { sortTriangles } from '../src/task3.mjs';
 import { triangels } from '../src/data.mjs';
-import {expect, assert, spy} from './helpers.mjs';
+import { assert, spy, exp } from './helpers.mjs';
 
 describe ('sortTriangles', () => {
   let sortTrianglesSpy;
@@ -15,7 +15,7 @@ describe ('sortTriangles', () => {
 
   it('checkEnvelops has been called with correct parameters', () => {
     sortTrianglesSpy(triangels);
-    expect(sortTrianglesSpy).to.have.been.called.with(triangels);
+    exp(sortTrianglesSpy, triangels);
   });
 
   it('there isn\'t parameter', () => {
