@@ -68,12 +68,13 @@ const checkParams = arr => {
 }
 
 const getArea = obj => {
-	const [a, b, c] = Object.values(obj).filter(el => typeof el === 'number');
+	const [a, b, c] = Object.values(obj).filter(el => !isNaN(el));
 	// Geron's formula
 	const halfP = (a + b + c) / 2;
-	const area = Math.floor(Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c)));
+	const area = Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
+	const result = Math.floor(area);
 
-	return area;
+	return result;
 }
 
 const sortTriangles = arr => {
