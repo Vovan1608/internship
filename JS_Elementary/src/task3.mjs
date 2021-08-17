@@ -15,11 +15,11 @@ const isValidPropVerticesLength = str => {
 }
 
 const isPropVertMatchesNamesOfSides = obj => {
-	const arrVert = [...obj.vertices].sort().join('');
+	const vertice = [...obj.vertices].sort().join('');
 	const keys = Object.keys(obj);
-	const keysOfVer = keys.filter(el => el !== 'vertices').sort();
+	const keysOfVertices = keys.filter(el => el !== 'vertices').sort().join('');
 
-	return arrVert === keysOfVer.join('').toUpperCase();
+	return vertice === keysOfVertices.toUpperCase();
 }
 
 const isTriangel = (a, b, c) => {
