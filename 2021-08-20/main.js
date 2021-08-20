@@ -20,10 +20,10 @@ const putObj = {
 	"id": "24"
 };
 
-const getData = _ => {
+async function getData() {
 	fetch(url)
 		.then(r => r.json())
-		.then(console.log);
+		.then(await console.log);
 }
 
 async function postData() {
@@ -43,6 +43,9 @@ async function postData() {
 async function putData() {
 	const response = await fetch(url + '/25', {
 		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
 		body: JSON.stringify(putObj)
 	});
 
@@ -61,7 +64,7 @@ async function deleteData() {
 	console.log('Успех:', JSON.stringify(result));
 }
 
-putData();
+// putData();
 // postData();
 // deleteData();
-// getData();
+getData();
