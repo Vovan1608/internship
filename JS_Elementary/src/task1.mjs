@@ -61,7 +61,8 @@ const renderChessDesk = (height, width, char) => {
 			}
 		}
 
-		tempStr += oddLine + LINE_BREAK;
+		oddLine += LINE_BREAK;
+		tempStr += oddLine;
 
 		if (IS_HEIGHT_MORE_ONE) {
 			tempStr += evenLine + LINE_BREAK;
@@ -69,7 +70,7 @@ const renderChessDesk = (height, width, char) => {
 		}
 
 		if (IS_HEIGHT_MORE_ONE && !isEven(height)) {
-			tempStr += oddLine + LINE_BREAK;
+			tempStr += oddLine;
 		}
 
 		const resStr = tempStr.slice(0, -1);
